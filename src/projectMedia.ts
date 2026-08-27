@@ -19,10 +19,6 @@ const projectMedia = {
       "src": "/projects/cricket-manager-pro/image-5.png"
     },
     {
-      "type": "image",
-      "src": "/projects/cricket-manager-pro/image-6.png"
-    },
-    {
       "type": "video",
       "src": "/projects/cricket-manager-pro/video-1.mp4"
     }
@@ -39,14 +35,6 @@ const projectMedia = {
     {
       "type": "image",
       "src": "/projects/my-memory-of-us/image-4.jpg"
-    },
-    {
-      "type": "image",
-      "src": "/projects/my-memory-of-us/image-5.png"
-    },
-    {
-      "type": "image",
-      "src": "/projects/my-memory-of-us/image-6.png"
     },
     {
       "type": "video",
@@ -511,10 +499,6 @@ const projectMedia = {
       "src": "/projects/hajwala/image-5.png"
     },
     {
-      "type": "image",
-      "src": "/projects/hajwala/image-6.png"
-    },
-    {
       "type": "video",
       "src": "/projects/hajwala/video-1.mp4"
     }
@@ -531,14 +515,6 @@ const projectMedia = {
     {
       "type": "image",
       "src": "/projects/sudoku-social/image-4.jpg"
-    },
-    {
-      "type": "image",
-      "src": "/projects/sudoku-social/image-5.png"
-    },
-    {
-      "type": "image",
-      "src": "/projects/sudoku-social/image-6.png"
     }
   ],
   "ido-soccer": [
@@ -557,10 +533,6 @@ const projectMedia = {
     {
       "type": "image",
       "src": "/projects/ido-soccer/image-5.png"
-    },
-    {
-      "type": "image",
-      "src": "/projects/ido-soccer/image-6.png"
     }
   ],
   "manic-miner": [
@@ -765,6 +737,144 @@ const projectMedia = {
     {
       "type": "image",
       "src": "/projects/shark-shark/image-8.jpg"
+    }
+  ],
+  "the-longest-tale": [
+    {
+      "type": "image",
+      "src": "/projects/the-longest-tale/image-1.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/the-longest-tale/image-2.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/the-longest-tale/image-3.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/the-longest-tale/image-4.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/the-longest-tale/image-5.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/the-longest-tale/image-6.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/the-longest-tale/image-7.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/the-longest-tale/image-8.jpg"
+    }
+  ],
+  "guardians-of-peace": [
+    {
+      "type": "image",
+      "src": "/projects/guardians-of-peace/image-1.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/guardians-of-peace/image-2.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/guardians-of-peace/image-3.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/guardians-of-peace/image-4.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/guardians-of-peace/image-5.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/guardians-of-peace/image-6.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/guardians-of-peace/image-7.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/guardians-of-peace/image-8.jpg"
+    }
+  ],
+  "idle-king": [
+    {
+      "type": "image",
+      "src": "/projects/idle-king/image-1.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/idle-king/image-2.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/idle-king/image-3.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/idle-king/image-4.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/idle-king/image-5.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/idle-king/image-6.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/idle-king/image-7.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/idle-king/image-8.jpg"
+    }
+  ],
+  "relentless": [
+    {
+      "type": "image",
+      "src": "/projects/relentless/image-1.png"
+    },
+    {
+      "type": "image",
+      "src": "/projects/relentless/image-2.png"
+    },
+    {
+      "type": "image",
+      "src": "/projects/relentless/image-3.png"
+    }
+  ],
+  "christmas-sweeper-4": [
+    {
+      "type": "image",
+      "src": "/projects/christmas-sweeper-4/image-1.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/christmas-sweeper-4/image-2.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/christmas-sweeper-4/image-3.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/christmas-sweeper-4/image-4.jpg"
+    },
+    {
+      "type": "image",
+      "src": "/projects/christmas-sweeper-4/image-5.jpg"
     }
   ]
 } as const

@@ -8,7 +8,7 @@ export type MediaItem = {
 }
 
 export type StoreLink = {
-  platform: 'Steam' | 'Xbox' | 'PlayStation' | 'Nintendo Switch' | 'Google Play' | 'App Store' | 'Official site'
+  platform: 'Steam' | 'Xbox' | 'PlayStation' | 'Nintendo Switch' | 'Google Play' | 'App Store' | 'Official site' | 'Kickstarter'
   url: string
 }
 
@@ -26,17 +26,18 @@ export type Project = {
   imagePosition?: string
   media?: MediaItem[]
   storeLinks?: StoreLink[]
+  releaseStatus?: 'Released' | 'In development' | 'Legacy release' | 'Unpublished'
   internalSource?: string
   featured?: boolean
   evidence: 'CV + public source' | 'CV' | 'Owner-attested + publisher' | 'Team portfolio'
 }
 
-type ProjectInput = Omit<Project, 'image' | 'media'> & { fallbackImage?: string }
+type ProjectInput = Omit<Project, 'image' | 'media'> & { fallbackImage?: string; coverImage?: string }
 
 function project(input: ProjectInput): Project {
-  const { fallbackImage = '/projects/chase-the-sun.jpg', ...data } = input
+  const { fallbackImage = '/projects/chase-the-sun.jpg', coverImage, ...data } = input
   const media = mediaFor(input.id)
-  const cover = media.find(item => item.type === 'image')?.src ?? fallbackImage
+  const cover = coverImage ?? media.find(item => item.type === 'image')?.src ?? fallbackImage
   return { ...data, image: cover, media: media.length ? media : [{ type: 'image', src: cover }] }
 }
 
@@ -49,41 +50,59 @@ export const projects: Project[] = [
     description: 'A mobile cricket-management game built from MVP through production and market launch.',
     contribution: 'CTO / Lead Unity Developer. Product and technical ownership across gameplay, balancing, feature priorities, architecture and rapid iteration with multidisciplinary teams.',
     engagement: 'Full production', genre: 'Sports management', platforms: ['iOS', 'Android'], capabilities: ['Unity', 'Gameplay', 'Architecture', 'LiveOps', 'Leadership'],
+    storeLinks: [
+      { platform: 'Official site', url: 'https://cricketmanagerpro.com' },
+    ], releaseStatus: 'Released',
     internalSource: 'https://cricketmanagerpro.com', featured: true, evidence: 'CV + public source'
   }),
   project({
     id: 'relentless', title: 'Relentless', kicker: 'Trading card game · Web3',
-    description: 'A digital trading-card game with player-owned cards, a marketplace and cross-platform ambitions.',
+    description: 'A strategic digital trading-card game built around collectible, player-owned cards, deck construction, competitive play and a cross-platform marketplace.',
     contribution: 'Lead Game Programmer / Product Manager and Scrum Master, coordinating Art, Backend and Frontend across a 20+ person team.',
     engagement: 'Technical leadership', genre: 'Card game', platforms: ['PC', 'Mobile'], capabilities: ['Unity', 'Production', 'Web3', 'Leadership'],
+    storeLinks: [
+      { platform: 'Official site', url: 'https://loom.games/en/' },
+    ], releaseStatus: 'Legacy release',
     fallbackImage: '/projects/relentless.png', internalSource: 'https://loom.games/en/', featured: true, evidence: 'CV + public source'
   }),
   project({
     id: 'christmas-sweeper-4', title: 'Christmas Sweeper 4', kicker: 'Casual F2P · Match-3',
-    description: 'A long-running Christmas-themed match-3 game with seasonal progression and mobile free-to-play systems.',
-    contribution: 'Lead Game Programmer / Product Manager. Led production across gameplay implementation, feature delivery, balancing and art/content coordination.',
+    description: 'A Christmas-themed match-3 game with more than 1,000 levels, shaped boards, boosters, collectible gifts and seasonal mobile progression.',
+    contribution: 'Lead Game Programmer / Product Manager, responsible for gameplay implementation, feature delivery, balancing and coordination of art and level content.',
     engagement: 'Full production', genre: 'Match-3', platforms: ['iOS', 'Android'], capabilities: ['Unity', 'Gameplay', 'F2P', 'Production'],
+    storeLinks: [
+      { platform: 'App Store', url: 'https://apps.apple.com/app/id1413442151' },
+      { platform: 'Google Play', url: 'https://play.google.com/store/apps/details?id=com.smileygamer.christmassweeper4' },
+    ], releaseStatus: 'Released',
     evidence: 'CV', fallbackImage: '/projects/chase-the-sun.jpg', internalSource: 'https://www.smileygamer.com/portfolio-item/03-christmas-sweeper-4/'
   }),
   project({
-    id: 'idle-king', title: 'Idle King / King Royale', kicker: 'Idle tycoon · Mobile F2P',
-    description: 'A mobile idle/tycoon game developed from MVP evolution through production and market launch.',
+    id: 'idle-king', title: 'King Royale: Idle Tycoon RPG', kicker: 'Idle tycoon RPG · Mobile F2P',
+    description: 'A mobile idle tycoon RPG about expanding a medieval kingdom, building an army, defeating bosses and rescuing the kidnapped princess.',
     contribution: 'CTO / Lead Unity Developer. Product and technical ownership across gameplay, architecture, balancing and rapid iteration.',
-    engagement: 'Full production', genre: 'Idle / Tycoon', platforms: ['iOS', 'Android'], capabilities: ['Unity', 'F2P', 'Architecture', 'Leadership'],
+    engagement: 'Full production', genre: 'Idle Tycoon RPG', platforms: ['iOS', 'Android'], capabilities: ['Unity', 'F2P', 'Architecture', 'Leadership'],
+    storeLinks: [
+      { platform: 'App Store', url: 'https://apps.apple.com/us/app/king-royale-idle-tycoon-rpg/id1479539390' },
+    ], releaseStatus: 'Released',
     evidence: 'CV', fallbackImage: '/projects/shopping-mall.jpg', internalSource: 'https://kingroyale.de/'
   }),
   project({
-    id: 'the-longest-tale', title: 'The Longest Tale', kicker: 'Adventure · Steam production',
-    description: 'A PC game project developed with a focus on production-ready core gameplay and rapid feature prototyping.',
+    id: 'the-longest-tale', title: 'The Longest Tale', kicker: 'Fantasy action RPG · Steam',
+    description: 'A fantasy action RPG following four heroes through mythical realms, ancient ruins, dangerous encounters and arcane puzzles as they uncover a forgotten legend.',
     contribution: 'Lead Game Developer. Owned core gameplay mechanics and accelerated R&D for features, gameplay ideas and balancing.',
-    engagement: 'Technical leadership', genre: 'Adventure', platforms: ['Steam'], capabilities: ['Unity', 'Gameplay', 'Rapid prototyping', 'Leadership'],
-    evidence: 'CV', fallbackImage: '/projects/white-keep.jpg', internalSource: 'https://store.steampowered.com/app/3507360/The_Longest_Tale'
+    engagement: 'Technical leadership', genre: 'Fantasy Action RPG', platforms: ['Steam'], capabilities: ['Unity', 'Gameplay', 'Rapid prototyping', 'Leadership'],
+    storeLinks: [{ platform: 'Steam', url: 'https://store.steampowered.com/app/3507360/The_Longest_Tale/' }], releaseStatus: 'Released',
+    evidence: 'CV', fallbackImage: '/projects/white-keep.jpg', internalSource: 'https://store.steampowered.com/app/3507360/The_Longest_Tale/'
   }),
   project({
-    id: 'guardians-of-peace', title: 'The Guardians of Peace', kicker: 'Action adventure · Team leadership',
-    description: 'A Steam game project developed by a multidisciplinary team across programming, art and animation.',
+    id: 'guardians-of-peace', title: 'The Guardians of Peace', kicker: 'Sci-fi action adventure · Multi-platform',
+    description: 'A sci-fi action adventure about a young squire mastering seven energies, confronting the Darkling hordes and restoring peace to Hastina-Poora.',
     contribution: 'Lead Game Programmer / Product Manager. Organized production, established core architecture and managed a team of 10.',
-    engagement: 'Technical leadership', genre: 'Action adventure', platforms: ['Steam'], capabilities: ['Unity', 'Architecture', 'Production', 'Leadership'],
+    engagement: 'Technical leadership', genre: 'Sci-Fi Adventure RPG', platforms: ['Steam', 'Xbox', 'iOS', 'Android'], capabilities: ['Unity', 'Architecture', 'Production', 'Leadership'],
+    storeLinks: [
+      { platform: 'Steam', url: 'https://store.steampowered.com/app/1466620/The_Guardians_of_Peace/' },
+      { platform: 'Xbox', url: 'https://www.xbox.com/en-US/games/store/the-guardians-of-peace/9pngj9grgk13' },
+    ], releaseStatus: 'Released',
     evidence: 'CV', fallbackImage: '/projects/kingdom-jump.png', internalSource: 'https://playthegop.com/'
   }),
   project({
@@ -91,20 +110,32 @@ export const projects: Project[] = [
     description: 'A modern platform adaptation of the established classic for contemporary console and PC ecosystems.',
     contribution: 'Senior Console Porting Engineer / Technical Lead: platform adaptation, complex debugging, performance and memory optimization while preserving gameplay behavior.',
     engagement: 'Porting', genre: 'Platformer', platforms: ['Steam', 'Xbox', 'PlayStation', 'Nintendo Switch'], capabilities: ['Porting', 'Optimization', 'Certification', 'Debugging'],
-    fallbackImage: '/projects/manic-miner.jpg', internalSource: 'https://bbg-entertainment.com/game/manic-miner/', featured: true, evidence: 'Owner-attested + publisher'
+    storeLinks: [{ platform: 'Steam', url: 'https://store.steampowered.com/app/4921770/MANIC_MINER/' }], releaseStatus: 'In development',
+    coverImage: '/projects/manic-miner/image-6.jpg', fallbackImage: '/projects/manic-miner.jpg', internalSource: 'https://bbg-entertainment.com/game/manic-miner/', featured: true, evidence: 'Owner-attested + publisher'
   }),
   project({
     id: 'boulder-dash-40', title: 'Boulder Dash 40th Anniversary', kicker: 'Anniversary edition · Console porting',
     description: 'A modern anniversary release built around the long-running Boulder Dash franchise.',
     contribution: 'Console adaptation and technical leadership across platform-specific requirements, debugging, performance and memory constraints.',
     engagement: 'Porting', genre: 'Puzzle / Arcade', platforms: ['Steam', 'Xbox', 'PlayStation', 'Nintendo Switch'], capabilities: ['Porting', 'Optimization', 'Platform SDKs'],
+    storeLinks: [
+      { platform: 'Steam', url: 'https://store.steampowered.com/app/3124310/BOULDER_DASH_40th_Anniversary/' },
+      { platform: 'Xbox', url: 'https://www.xbox.com/en-US/games/store/boulder-dash-40th-anniversary/9nf27s57jq02' },
+      { platform: 'PlayStation', url: 'https://store.playstation.com/en-us/concept/10015438/' },
+      { platform: 'Nintendo Switch', url: 'https://www.nintendo.com/us/store/products/boulder-dash-40th-anniversary-switch/' },
+    ], releaseStatus: 'Released',
     fallbackImage: '/projects/boulder-dash-40.jpg', internalSource: 'https://bbg-entertainment.com/game/boulder-dash-40th-anniversary/', featured: true, evidence: 'Owner-attested + publisher'
   }),
   project({
     id: 'dynablaster', title: 'Dynablaster', kicker: 'Action classic · Console porting',
     description: 'A contemporary release of the maze-based action classic for modern platforms.',
     contribution: 'Existing-code adaptation, platform-specific issue resolution, optimization and release-focused technical work.',
-    engagement: 'Porting', genre: 'Action / Arcade', platforms: ['Steam', 'Xbox', 'PlayStation', 'Nintendo Switch'], capabilities: ['Porting', 'Debugging', 'Optimization'],
+    engagement: 'Porting', genre: 'Action / Arcade', platforms: ['Steam', 'Xbox', 'Nintendo Switch'], capabilities: ['Porting', 'Debugging', 'Optimization'],
+    storeLinks: [
+      { platform: 'Steam', url: 'https://store.steampowered.com/app/1489620/DYNABLASTER/' },
+      { platform: 'Xbox', url: 'https://www.xbox.com/en-US/games/store/dynablaster/9nhn30d462n2' },
+      { platform: 'Nintendo Switch', url: 'https://www.nintendo.com/us/store/products/dynablaster-switch/' },
+    ], releaseStatus: 'Released',
     fallbackImage: '/projects/dynablaster.jpg', internalSource: 'https://bbg-entertainment.com/game/dynablaster/', evidence: 'Owner-attested + publisher'
   }),
   project({
@@ -112,20 +143,36 @@ export const projects: Project[] = [
     description: 'A polished Boulder Dash release combining classic cave exploration with contemporary presentation.',
     contribution: 'Porting engineering for console and PC targets, including production-code adaptation and platform requirements.',
     engagement: 'Porting', genre: 'Puzzle / Arcade', platforms: ['Steam', 'Xbox', 'PlayStation', 'Nintendo Switch'], capabilities: ['Porting', 'Platform SDKs', 'Optimization'],
+    storeLinks: [
+      { platform: 'Steam', url: 'https://store.steampowered.com/app/1221650/Boulder_Dash_Deluxe/' },
+      { platform: 'Xbox', url: 'https://www.xbox.com/en-US/games/store/boulder-dash-deluxe/9p8tjvkn4z17' },
+      { platform: 'PlayStation', url: 'https://store.playstation.com/en-us/product/UP7359-PPSA21744_00-0781041976365756' },
+      { platform: 'Nintendo Switch', url: 'https://www.nintendo.com/us/store/products/boulder-dash-deluxe-switch/' },
+    ], releaseStatus: 'Released',
     fallbackImage: '/projects/boulder-dash-deluxe.jpg', internalSource: 'https://bbg-entertainment.com/game/boulder-dash-deluxe/', evidence: 'Owner-attested + publisher'
   }),
   project({
     id: 'astrosmash', title: 'Astrosmash', kicker: 'Retro reimagining · Console porting',
     description: 'A modern version of the classic space shooter adapted for contemporary hardware.',
     contribution: 'Hands-on console porting, cross-platform debugging and performance work.',
-    engagement: 'Porting', genre: 'Shooter / Arcade', platforms: ['Steam', 'Xbox', 'PlayStation', 'Nintendo Switch'], capabilities: ['Porting', 'Performance', 'Debugging'],
+    engagement: 'Porting', genre: 'Shooter / Arcade', platforms: ['Steam', 'Xbox', 'Nintendo Switch'], capabilities: ['Porting', 'Performance', 'Debugging'],
+    storeLinks: [
+      { platform: 'Steam', url: 'https://store.steampowered.com/app/2430580/ASTROSMASH/' },
+      { platform: 'Xbox', url: 'https://www.xbox.com/en-US/games/store/astrosmash/9nlvftkqv50j' },
+      { platform: 'Nintendo Switch', url: 'https://www.nintendo.com/us/store/products/astrosmash-switch/' },
+    ], releaseStatus: 'Released',
     fallbackImage: '/projects/astrosmash.jpg', internalSource: 'https://bbg-entertainment.com/game/astrosmash/', evidence: 'Owner-attested + publisher'
   }),
   project({
     id: 'shark-shark', title: 'Shark! Shark!', kicker: 'Arcade reimagining · Console porting',
     description: 'A family-friendly modern take on the underwater arcade original.',
     contribution: 'Porting and platform adaptation, with focus on behavior parity, stability and performance.',
-    engagement: 'Porting', genre: 'Family / Arcade', platforms: ['Steam', 'Xbox', 'PlayStation', 'Nintendo Switch'], capabilities: ['Porting', 'QA support', 'Optimization'],
+    engagement: 'Porting', genre: 'Family / Arcade', platforms: ['Steam', 'Xbox', 'Nintendo Switch'], capabilities: ['Porting', 'QA support', 'Optimization'],
+    storeLinks: [
+      { platform: 'Steam', url: 'https://store.steampowered.com/app/2410640/SHARK_SHARK/' },
+      { platform: 'Xbox', url: 'https://www.xbox.com/en-US/games/store/shark-shark/9p052x824t3t' },
+      { platform: 'Nintendo Switch', url: 'https://www.nintendo.com/us/store/products/shark-shark-switch/' },
+    ], releaseStatus: 'Released',
     fallbackImage: '/projects/shark-shark.jpg', internalSource: 'https://bbg-entertainment.com/game/shark-shark/', evidence: 'Owner-attested + publisher'
   }),
   project({
@@ -145,7 +192,7 @@ export const projects: Project[] = [
   project({
     id: 'time-travel', title: 'Time Travel', kicker: 'Educational · Interactive experience',
     description: 'An educational interactive project using game mechanics to explore historical and cultural content.',
-    contribution: teamDesignContribution, engagement: 'Co-development', genre: 'Educational', platforms: ['Interactive installation'], capabilities: ['Unity', 'Interactive media', 'Game design'], evidence: 'Team portfolio'
+    contribution: teamDesignContribution, engagement: 'Co-development', genre: 'Educational', platforms: ['Interactive'], capabilities: ['Unity', 'Interactive media', 'Game design'], evidence: 'Team portfolio'
   }),
   project({
     id: 'brams', title: 'Brams', kicker: 'Educational · Interactive learning',

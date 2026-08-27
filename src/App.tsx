@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
 import { projects, type Project } from './projects'
+import { portfolioPresets, presetFromLocation, projectIdFromPath, projectsForPreset, type PresetSlug } from './portfolioPresets'
 
 type FilterGroup = 'engagement' | 'genre' | 'platforms' | 'capabilities'
 
@@ -38,13 +39,15 @@ function ProjectCard({ project, onOpen, featured = false }: { project: Project; 
   </article>
 }
 
-function ProjectDialog({ project, onClose }: { project: Project; onClose: () => void }) {
+function ProjectDialog({ project, projectContext, onClose, onNavigate }: { project: Project; projectContext: Project[]; onClose: () => void; onNavigate: (project: Project) => void }) {
   const closeRef = useRef<HTMLButtonElement>(null)
   const dialogRef = useRef<HTMLElement>(null)
   const media = project.media?.length ? project.media : [{ type: 'image' as const, src: project.image, alt: `${project.title} project artwork` }]
   const [activeMedia, setActiveMedia] = useState(0)
   const selectedMedia = media[activeMedia] ?? media[0]
-  const sourceIsStoreLink = project.storeLinks?.some(link => link.url === project.internalSource)
+  const projectIndex = projectContext.findIndex(item => item.id === project.id)
+  const previousProject = projectContext.length > 1 ? projectContext[(projectIndex - 1 + projectContext.length) % projectContext.length] : null
+  const nextProject = projectContext.length > 1 ? projectContext[(projectIndex + 1) % projectContext.length] : null
 
   useEffect(() => {
     const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null
@@ -103,22 +106,34 @@ function ProjectDialog({ project, onClose }: { project: Project; onClose: () => 
         <div className="dialog-meta">
           <div><span>Engagement</span><strong>{project.engagement}</strong></div>
           <div><span>Platforms</span><strong>{project.platforms.join(' · ')}</strong></div>
-          <div><span>Media</span><strong>{media.length} item{media.length === 1 ? '' : 's'}</strong></div>
+          <div><span>Focus</span><strong>{project.capabilities.slice(0, 2).join(' · ')}</strong></div>
         </div>
         <div className="dialog-tags">{project.capabilities.map(tag => <span key={tag}>{tag}</span>)}</div>
-        {(!!project.storeLinks?.length || (project.internalSource && !sourceIsStoreLink)) && <div className="store-links"><h3>Project links</h3><div>
+        {!!project.storeLinks?.length && <div className="store-links"><h3>Available on</h3><div>
           {project.storeLinks?.map(link => <a key={`${link.platform}-${link.url}`} href={link.url} target="_blank" rel="noreferrer">{link.platform}<Arrow /></a>)}
-          {project.internalSource && !sourceIsStoreLink && <a href={project.internalSource} target="_blank" rel="noreferrer">Project source<Arrow /></a>}
         </div></div>}
+        <p className="release-status"><span>Release status</span><strong>{project.releaseStatus ?? (project.storeLinks?.length ? 'Released' : 'Unpublished')}</strong></p>
+        {previousProject && nextProject && <nav className="project-navigation" aria-label="Project navigation">
+          <button onClick={() => onNavigate(previousProject)} aria-label={`Previous project: ${previousProject.title}`}><span>Previous project</span><strong>← {previousProject.title}</strong></button>
+          <button onClick={() => onNavigate(nextProject)} aria-label={`Next project: ${nextProject.title}`}><span>Next project</span><strong>{nextProject.title} →</strong></button>
+        </nav>}
       </div>
     </section>
   </div>
 }
 
 function App() {
+  const initialProject = projects.find(project => project.id === projectIdFromPath(window.location.pathname)) ?? null
   const [filters, setFilters] = useState<FilterState>(emptyFilters)
   const [search, setSearch] = useState('')
-  const [selected, setSelected] = useState<Project | null>(null)
+  const [, setRouteVersion] = useState(0)
+  const [selected, setSelected] = useState<Project | null>(initialProject)
+  const [selectedContext, setSelectedContext] = useState<Project[]>(projects)
+  const historyReturnPath = projectIdFromPath(window.location.pathname) ? (window.history.state as { returnPath?: string } | null)?.returnPath : null
+  const presetLocation = historyReturnPath ? new URL(historyReturnPath, window.location.origin) : window.location
+  const preset = presetFromLocation(presetLocation)
+  const returnPathRef = useRef(historyReturnPath ?? preset.path)
+  const featuredProjects = useMemo(() => projectsForPreset(preset, projects), [preset])
   const options = useMemo(() => ({
     engagement: [...new Set(projects.map(p => p.engagement))].sort(),
     genre: [...new Set(projects.map(p => p.genre))].sort(),
@@ -134,7 +149,87 @@ function App() {
       (filters.platforms === 'All' || project.platforms.includes(filters.platforms)) &&
       (filters.capabilities === 'All' || project.capabilities.includes(filters.capabilities))
   }), [filters, search])
-  const activeFilterCount = Object.values(filters).filter(v => v !== 'All').length + (search ? 1 : 0)
+  const activeFilterCount = Object.values(filters).filter(v => v !== 'All').length + (search.trim() ? 1 : 0)
+
+  const openProject = useCallback((project: Project, context: Project[]) => {
+    const returnPath = projectIdFromPath(window.location.pathname) ? returnPathRef.current : `${window.location.pathname}${window.location.hash}`
+    returnPathRef.current = returnPath
+    setSelected(project)
+    setSelectedContext(context)
+    window.history.pushState({ portfolioModal: true, returnPath }, '', `/project/${encodeURIComponent(project.id)}`)
+    setRouteVersion(version => version + 1)
+  }, [])
+
+  const navigateProject = useCallback((project: Project) => {
+    setSelected(project)
+    window.history.replaceState({ portfolioModal: true, returnPath: returnPathRef.current }, '', `/project/${encodeURIComponent(project.id)}`)
+    setRouteVersion(version => version + 1)
+  }, [])
+
+  const closeProject = useCallback(() => {
+    setSelected(null)
+    window.history.replaceState({}, '', returnPathRef.current)
+    setRouteVersion(version => version + 1)
+  }, [])
+
+  const navigatePreset = useCallback((slug: PresetSlug) => {
+    const nextPreset = portfolioPresets[slug]
+    returnPathRef.current = nextPreset.path
+    window.history.pushState({}, '', nextPreset.path)
+    setRouteVersion(version => version + 1)
+  }, [])
+
+  useEffect(() => {
+    const syncRoute = () => {
+      const projectId = projectIdFromPath(window.location.pathname)
+      const returnPath = (window.history.state as { returnPath?: string } | null)?.returnPath
+      if (returnPath) returnPathRef.current = returnPath
+      else if (!projectId) returnPathRef.current = `${window.location.pathname}${window.location.hash}`
+      setSelected(projects.find(project => project.id === projectId) ?? null)
+      if (!projectId) setSelectedContext(projects)
+      setRouteVersion(version => version + 1)
+    }
+    window.addEventListener('popstate', syncRoute)
+    window.addEventListener('hashchange', syncRoute)
+    return () => {
+      window.removeEventListener('popstate', syncRoute)
+      window.removeEventListener('hashchange', syncRoute)
+    }
+  }, [])
+
+  useEffect(() => {
+    const canonicalPath = selected ? `/project/${selected.id}` : preset.path
+    const title = selected ? `${selected.title} — Unity Project | Stanislav Sorokin` : preset.seoTitle
+    const description = selected ? `${selected.description} ${selected.contribution}` : preset.seoDescription
+    document.title = title
+    const setMeta = (selector: string, value: string) => document.querySelector<HTMLMetaElement>(selector)?.setAttribute('content', value)
+    document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.setAttribute('href', `https://stanislavsorokin.com${canonicalPath}`)
+    setMeta('meta[name="description"]', description)
+    setMeta('meta[property="og:title"]', title)
+    setMeta('meta[property="og:description"]', description)
+    setMeta('meta[property="og:url"]', `https://stanislavsorokin.com${canonicalPath}`)
+    setMeta('meta[name="twitter:title"]', title)
+    setMeta('meta[name="twitter:description"]', description)
+    const schemaId = 'portfolio-structured-data'
+    let schema = document.getElementById(schemaId) as HTMLScriptElement | null
+    if (!schema) {
+      schema = document.createElement('script')
+      schema.id = schemaId
+      schema.type = 'application/ld+json'
+      document.head.appendChild(schema)
+    }
+    schema.textContent = JSON.stringify(selected ? {
+      '@context': 'https://schema.org', '@type': 'CreativeWork', name: selected.title,
+      description: selected.description, url: `https://stanislavsorokin.com${canonicalPath}`,
+      creator: { '@type': 'Person', name: 'Stanislav Sorokin', jobTitle: 'Senior Unity Developer and Technical Lead' },
+      keywords: [selected.genre, ...selected.platforms, ...selected.capabilities].join(', '),
+    } : {
+      '@context': 'https://schema.org', '@type': 'ProfilePage', name: title,
+      url: `https://stanislavsorokin.com${canonicalPath}`, description,
+      mainEntity: { '@type': 'Person', name: 'Stanislav Sorokin', jobTitle: 'Senior Unity Developer and Technical Lead',
+        knowsAbout: ['Unity', 'C#', 'Console game porting', 'PlayStation development', 'Xbox development', 'Nintendo Switch development', 'Steam releases', 'Mobile game development', 'Multiplayer games', 'Technical leadership'] },
+    })
+  }, [preset, selected])
 
   return <>
     <header className="site-header">
@@ -147,9 +242,9 @@ function App() {
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero__main">
           <p className="eyebrow">Senior Unity Developer · Technical Lead</p>
-          <h1 id="hero-title">Games built to play.<br/><em>Systems built to ship.</em></h1>
+          <h1 id="hero-title"><span className="sr-only">Senior Unity Developer and Technical Lead — </span>Games built to play.<br/><em>Systems built to ship.</em></h1>
           <p className="hero__lede">18+ years turning ambitious game ideas into production-ready Unity experiences — from mobile F2P and multiplayer to console porting.</p>
-          <div className="hero__actions"><a className="primary-button" href="#work">Explore selected work</a><a className="text-link" href="mailto:stansorokin14@gmail.com">Discuss a project <Arrow /></a></div>
+          <div className="hero__actions"><a className="primary-button" href="#featured-work">View featured case studies</a><a className="text-link" href="mailto:stansorokin14@gmail.com">Discuss a project <Arrow /></a></div>
         </div>
         <aside className="hero__rail" aria-label="Core expertise">
           <div><span>01</span><strong>Unity production</strong><p>Gameplay, architecture, tools, optimization</p></div>
@@ -158,8 +253,20 @@ function App() {
         </aside>
       </section>
 
-      <section className="featured" aria-label="Featured projects">
-        {projects.filter(p => p.featured).slice(0, 2).map(project => <ProjectCard key={project.id} project={project} featured onOpen={() => setSelected(project)} />)}
+      <section id="featured-work" className="featured-showcase" aria-labelledby="featured-title">
+        <div className="featured-showcase__heading">
+          <div><p className="eyebrow">Curated portfolio</p><h2 id="featured-title">{preset.title}</h2></div>
+          <p>{preset.description}</p>
+        </div>
+        <nav className="featured-presets" aria-label="Featured portfolio views">
+          {(Object.keys(portfolioPresets) as PresetSlug[]).filter(slug => ['home', 'porting', 'arcades', 'mobile', 'leadership'].includes(slug)).map(slug => {
+            const item = portfolioPresets[slug]
+            return <a key={slug} href={item.path} className={preset.slug === slug ? 'is-active' : ''} aria-current={preset.slug === slug ? 'page' : undefined} onClick={event => { event.preventDefault(); navigatePreset(slug) }}>{item.label}</a>
+          })}
+        </nav>
+        <div className="featured" aria-label={`${preset.title} projects`}>
+          {featuredProjects.map((project, index) => <ProjectCard key={project.id} project={project} featured={index === 0} onOpen={() => openProject(project, featuredProjects)} />)}
+        </div>
       </section>
 
       <section id="work" className="work-section" aria-labelledby="work-title">
@@ -170,7 +277,7 @@ function App() {
           {activeFilterCount > 0 && <button className="clear-filters" onClick={() => { setFilters(emptyFilters); setSearch('') }}>Clear {activeFilterCount}</button>}
         </div>
         <div className="results-line" aria-live="polite"><span>{results.length} project{results.length === 1 ? '' : 's'}</span><span>Curated from CV, publisher and team portfolio sources</span></div>
-        {results.length ? <div className="project-grid">{results.map(project => <ProjectCard key={project.id} project={project} onOpen={() => setSelected(project)} />)}</div> : <div className="empty-state"><h3>No exact match.</h3><p>Clear one or more filters to broaden the archive.</p><button onClick={() => { setFilters(emptyFilters); setSearch('') }}>Reset filters</button></div>}
+        {results.length ? <div className="project-grid">{results.map(project => <ProjectCard key={project.id} project={project} onOpen={() => openProject(project, results)} />)}</div> : <div className="empty-state"><h3>No exact match.</h3><p>Clear one or more filters to broaden the archive.</p><button onClick={() => { setFilters(emptyFilters); setSearch('') }}>Reset filters</button></div>}
       </section>
 
       <section id="expertise" className="expertise" aria-labelledby="expertise-title">
@@ -193,7 +300,7 @@ function App() {
     </main>
 
     <footer><span>© {new Date().getFullYear()} Stanislav Sorokin</span><span>Senior Unity Developer / Technical Lead</span><a href="#top">Back to top ↑</a></footer>
-    {selected && <ProjectDialog project={selected} onClose={() => setSelected(null)} />}
+    {selected && <ProjectDialog key={selected.id} project={selected} projectContext={selectedContext} onClose={closeProject} onNavigate={navigateProject} />}
   </>
 }
 

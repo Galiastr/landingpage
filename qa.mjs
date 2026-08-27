@@ -1,9 +1,11 @@
 import { chromium } from 'playwright'
-import { mkdir } from 'node:fs/promises'
+import { mkdir, readFile } from 'node:fs/promises'
 
 const browser = await chromium.launch({ headless: true })
 const errors = []
 await mkdir('artifacts', { recursive: true })
+const rewriteRules = await readFile('dist/.htaccess', 'utf8')
+if (!rewriteRules.includes('RewriteRule . /index.html [L]')) errors.push('SPA fallback rewrite is missing')
 for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 1000 }, mobile: { width: 390, height: 844 } })) {
   const page = await browser.newPage({ viewport })
   page.on('console', msg => { if (msg.type() === 'error') errors.push(`${name}: console: ${msg.text()}`) })
@@ -13,6 +15,10 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
   const cards = await page.locator('.project-grid .project-card').count()
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)
   if (!title.includes('Stanislav Sorokin')) errors.push(`${name}: bad title ${title}`)
+  if (!await page.locator('link[rel="canonical"]').count()) errors.push(`${name}: canonical link is missing`)
+  if (!await page.locator('link[rel="icon"]').count()) errors.push(`${name}: favicon link is missing`)
+  if (await page.locator('.featured .project-card').count() !== 3) errors.push(`${name}: expected 3 featured case studies`)
+  if (!await page.getByRole('heading', { name: 'Selected case studies' }).count()) errors.push(`${name}: featured section heading is missing`)
   if (cards !== 41) errors.push(`${name}: expected 41 project cards, got ${cards}`)
   if (overflow) errors.push(`${name}: horizontal overflow`)
   if (name === 'mobile' && !await page.locator('.availability__compact').isVisible()) errors.push('mobile: compact availability label is not visible')
@@ -34,7 +40,11 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
     await trigger.click()
     if (!await page.locator('[role="dialog"]').isVisible()) errors.push('dialog did not open')
     if (!await page.locator('[aria-live="polite"]').filter({ hasText: 'Showing image 1 of' }).count()) errors.push('dialog gallery status is missing')
-    if (!await page.getByRole('link', { name: 'Project source' }).count()) errors.push('dialog project source link is missing')
+    if (await page.getByRole('link', { name: 'Project source' }).count()) errors.push('dialog exposes a Project source link')
+    if (await page.getByText('Media', { exact: true }).count()) errors.push('dialog still exposes media-count metadata')
+    if (!await page.getByText('Focus', { exact: true }).count()) errors.push('dialog focus metadata is missing')
+    if (!await page.locator('.project-navigation').count()) errors.push('project previous/next navigation is missing')
+    if (!new URL(page.url()).pathname.startsWith('/project/')) errors.push(`dialog permalink was not reflected in URL: ${page.url()}`)
     if (!await page.locator('.dialog-close').evaluate(element => element === document.activeElement)) errors.push('dialog did not focus close control')
     await page.keyboard.press('Shift+Tab')
     const backwardInsideDialog = await page.locator('[role="dialog"]').evaluate(dialog => dialog.contains(document.activeElement))
@@ -45,6 +55,53 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
     if (await page.locator('[role="dialog"]').count()) errors.push('dialog did not close on Escape')
     if (!await trigger.evaluate(element => element === document.activeElement)) errors.push('dialog did not restore trigger focus')
   }
+  await page.close()
+}
+
+{
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } })
+  await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle' })
+  await page.evaluate(() => { history.pushState({}, '', '/porting'); dispatchEvent(new PopStateEvent('popstate')) })
+  if (!await page.getByRole('heading', { name: 'Console & PC porting' }).count()) errors.push('/porting: targeted heading is missing')
+  const portingTitles = await page.locator('.featured .project-card__title-row strong').allTextContents()
+  if (!portingTitles.includes('Manic Miner') || !portingTitles.includes('Boulder Dash 40th Anniversary')) errors.push(`/porting: wrong featured projects: ${portingTitles.join(', ')}`)
+  const manicCover = await page.locator('.featured .project-card', { hasText: 'Manic Miner' }).locator('img').getAttribute('src')
+  if (manicCover !== '/projects/manic-miner/image-6.jpg') errors.push(`/porting: Manic Miner cover is not the selected colorful level: ${manicCover}`)
+  await page.locator('.featured .project-card button').first().click()
+  await page.getByRole('button', { name: 'Close case study' }).click()
+  if (new URL(page.url()).pathname !== '/porting') errors.push(`/porting: closing project lost preset route: ${page.url()}`)
+  if (!await page.getByRole('heading', { name: 'Console & PC porting' }).count()) errors.push('/porting: closing project lost targeted view')
+
+  await page.getByRole('button', { name: 'Open Manic Miner case study' }).last().click()
+  await page.locator('.project-navigation button').last().click()
+  await page.getByRole('button', { name: 'Close case study' }).click()
+  await page.goBack()
+  if (await page.locator('[role="dialog"]').count()) {
+    errors.push('project navigation polluted browser history and reopened a stale dialog on Back')
+    await page.getByRole('button', { name: 'Close case study' }).click()
+  }
+  if (new URL(page.url()).pathname !== '/porting') errors.push(`project navigation Back did not remain on return route: ${page.url()}`)
+
+  const verifiedBbgStores = {
+    'Boulder Dash 40th Anniversary': ['Steam', 'Xbox', 'PlayStation', 'Nintendo Switch'],
+    'Dynablaster': ['Steam', 'Xbox', 'Nintendo Switch'],
+    'Boulder Dash Deluxe': ['Steam', 'Xbox', 'PlayStation', 'Nintendo Switch'],
+    'Astrosmash': ['Steam', 'Xbox', 'Nintendo Switch'],
+    'Shark! Shark!': ['Steam', 'Xbox', 'Nintendo Switch'],
+  }
+  for (const [title, platforms] of Object.entries(verifiedBbgStores)) {
+    await page.getByRole('button', { name: `Open ${title} case study` }).last().click()
+    const labels = await page.locator('.store-links a').allTextContents()
+    for (const platform of platforms) if (!labels.includes(platform)) errors.push(`${title}: missing verified ${platform} store link`)
+    const status = await page.locator('.release-status strong').textContent()
+    if (status !== 'Released') errors.push(`${title}: expected Released status, got ${status}`)
+    await page.getByRole('button', { name: 'Close case study' }).click()
+  }
+
+  await page.goto('http://127.0.0.1:4173/#arcades', { waitUntil: 'networkidle' })
+  if (!await page.getByRole('heading', { name: 'Arcade games & classic franchises' }).count()) errors.push('#arcades: targeted heading is missing')
+  await page.evaluate(() => { history.pushState({}, '', '/project/manic-miner'); dispatchEvent(new PopStateEvent('popstate')) })
+  if (!await page.getByRole('dialog', { name: 'Manic Miner' }).count()) errors.push('direct project permalink did not open dialog')
   await page.close()
 }
 await browser.close()

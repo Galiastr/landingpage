@@ -1,0 +1,164 @@
+{
+  "the-longest-tale": {
+    "internalSource": "https://store.steampowered.com/app/3507360/",
+    "title": "The Longest Tale",
+    "media": [
+      {
+        "type": "image",
+        "path": "/projects/the-longest-tale/image-1.jpg",
+        "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3507360/02041327af4260952c4232e27bde24b174e09f62/ss_02041327af4260952c4232e27bde24b174e09f62.1920x1080.jpg?t=1779381899",
+        "bytes": 291885
+      },
+      {
+        "type": "image",
+        "path": "/projects/the-longest-tale/image-2.jpg",
+        "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3507360/99fbf09a3c4106acddfb041b71ee3bab2fbc73fb/ss_99fbf09a3c4106acddfb041b71ee3bab2fbc73fb.1920x1080.jpg?t=1779381899",
+        "bytes": 320118
+      },
+      {
+        "type": "image",
+        "path": "/projects/the-longest-tale/image-3.jpg",
+        "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3507360/765fcf923e4e70d2094a3879d48f7a25c232d16e/ss_765fcf923e4e70d2094a3879d48f7a25c232d16e.1920x1080.jpg?t=1779381899",
+        "bytes": 324120
+      },
+      {
+        "type": "image",
+        "path": "/projects/the-longest-tale/image-4.jpg",
+        "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3507360/90af076496bd7b3bcece2425763d29630204e023/ss_90af076496bd7b3bcece2425763d29630204e023.1920x1080.jpg?t=1779381899",
+        "bytes": 459249
+      },
+      {
+        "type": "image",
+        "path": "/projects/the-longest-tale/image-5.jpg",
+        "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3507360/6e8a83dfac454f991b1e3ae4ec803736f7ad977e/ss_6e8a83dfac454f991b1e3ae4ec803736f7ad977e.1920x1080.jpg?t=1779381899",
+        "bytes": 234673
+      },
+      {
+        "type": "image",
+        "path": "/projects/the-longest-tale/image-6.jpg",
+        "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3507360/af87763661574d6e3a18327319908bf6d155cddd/ss_af87763661574d6e3a18327319908bf6d155cddd.1920x1080.jpg?t=1779381899",
+        "bytes": 498467
+      },
+      {
+        "type": "image",
+        "path": "/projects/the-longest-tale/image-7.jpg",
+        "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3507360/810e841f79d3873791aa483237e8f4c7707b31ad/ss_810e841f79d3873791aa483237e8f4c7707b31ad.1920x1080.jpg?t=1779381899",
+        "bytes": 235189
+      },
+      {
+        "type": "image",
+        "path": "/projects/the-longest-tale/image-8.jpg",
+        "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3507360/a60261e7c760803c1185dd6efcdd53bf0cbadf25/ss_a60261e7c760803c1185dd6efcdd53bf0cbadf25.1920x1080.jpg?t=1779381899",
+        "bytes": 278711
+      }
+    ]
+  },
+  "guardians-of-peace": {
+    "internalSource": "https://store.steampowered.com/app/1466620/",
+    "title": "The Guardians of Peace",
+    "media": [
+      {
+        "type": "image",
+        "path": "/projects/guardians-of-peace/image-1.jpg",
+        "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1466620/ss_c5467801b5ac913224fe69e0abf48677274548f2.1920x1080.jpg?t=1640780762",
+        "bytes": 461445
+      },
+      {
+        "type": "image",
+        "path": "/projects/guardians-of-peace/image-2.jpg",
+        "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1466620/ss_fbcc0502d03deb50b25a336452cbe4d37de9260f.1920x1080.jpg?t=1640780762",
+        "bytes": 379332
+      },
+      {
+        "type": "image",
+        "path": "/projects/guardians-of-peace/image-3.jpg",
+        "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1466620/ss_0a23e203a78f1cecf161788b949857a7d74ee210.1920x1080.jpg?t=1640780762",
+        "bytes": 707810
+      },
+      {
+        "type": "image",
+        "path": "/projects/guardians-of-peace/image-4.jpg",
+        "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1466620/ss_3ee7fc66020995786f4e08e5dedacd29e6a401e8.1920x1080.jpg?t=1640780762",
+        "bytes": 815767
+      },
+      {
+        "type": "image",
+        "path": "/projects/guardians-of-peace/image-5.jpg",
+        "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1466620/ss_e3f9d5cdb45ae93120d9a63244b85b2c89cb3b02.1920x1080.jpg?t=1640780762",
+        "bytes": 288703
+      },
+      {
+        "type": "image",
+        "path": "/projects/guardians-of-peace/image-6.jpg",
+        "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1466620/ss_ef35ed18cf073250c48b2b38ea428dec2c5499c8.1920x1080.jpg?t=1640780762",
+        "bytes": 268411
+      },
+      {
+        "type": "image",
+        "path": "/projects/guardians-of-peace/image-7.jpg",
+        "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1466620/ss_abc25483b65c566d98ce7d07e9e057e4a432e918.1920x1080.jpg?t=1640780762",
+        "bytes": 454997
+      },
+      {
+        "type": "image",
+        "path": "/projects/guardians-of-peace/image-8.jpg",
+        "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1466620/ss_1140c4ca8f39540d7a47116d8160053dce51f530.1920x1080.jpg?t=1640780762",
+        "bytes": 685271
+      }
+    ]
+  },
+  "idle-king": {
+    "internalSource": "https://apps.apple.com/us/app/king-royale-idle-tycoon-rpg/id1479539390?uo=4",
+    "title": "King Royale: Idle Tycoon RPG",
+    "media": [
+      {
+        "type": "image",
+        "path": "/projects/idle-king/image-1.jpg",
+        "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource116/v4/8f/34/a9/8f34a921-f902-6f18-f2d3-f882631e5569/bcd6f113-5659-43cd-9a67-ba09834c757a_sreenshot_1242x2208_0010_04_EN.png/392x696bb.png",
+        "bytes": 376258
+      },
+      {
+        "type": "image",
+        "path": "/projects/idle-king/image-2.jpg",
+        "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource116/v4/8f/d2/f2/8fd2f2b1-caf3-881d-b0b1-c373c849a46b/fe187ab5-4fa8-4106-ba19-b1f970c2d35e_sreenshot_1242x2208_0009_03_EN.png/392x696bb.png",
+        "bytes": 336494
+      },
+      {
+        "type": "image",
+        "path": "/projects/idle-king/image-3.jpg",
+        "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource126/v4/f8/48/4d/f8484d61-ba19-b3c1-926a-7291d887049e/e99304a6-bea2-4920-aea4-ed192b5c54a1_sreenshot_1242x2208_0015_09_EN.png/392x696bb.png",
+        "bytes": 338197
+      },
+      {
+        "type": "image",
+        "path": "/projects/idle-king/image-4.jpg",
+        "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource126/v4/96/7a/ba/967aba4f-789a-d232-5f57-f094dd6f6115/5f0ba07b-bf1d-4b97-8162-01afe7370b56_sreenshot_1242x2208_0013_07_EN.png/392x696bb.png",
+        "bytes": 380081
+      },
+      {
+        "type": "image",
+        "path": "/projects/idle-king/image-5.jpg",
+        "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource126/v4/96/44/03/96440318-34a4-6d07-8615-1a3da71372b3/3b770b27-3f19-4b48-b2b8-aec8372247fa_sreenshot_1242x2208_0012_06_EN.png/392x696bb.png",
+        "bytes": 412148
+      },
+      {
+        "type": "image",
+        "path": "/projects/idle-king/image-6.jpg",
+        "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource116/v4/02/54/21/02542121-5645-dc9c-4f24-459d7650b4d7/e04269e2-67fa-475e-9761-fa237da911d0_sreenshot_1242x2208_0011_05_EN.png/392x696bb.png",
+        "bytes": 352751
+      },
+      {
+        "type": "image",
+        "path": "/projects/idle-king/image-7.jpg",
+        "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource116/v4/2b/47/46/2b474636-0608-e3ef-73c8-cb7c66407115/9254d505-a7ec-46ea-8e40-9fdebf890fce_sreenshot_1242x2208_0008_02_EN.png/392x696bb.png",
+        "bytes": 333761
+      },
+      {
+        "type": "image",
+        "path": "/projects/idle-king/image-8.jpg",
+        "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource116/v4/ed/e2/0a/ede20aae-33d9-c2a0-3947-f6f63e47a007/ebbf4995-3a08-4ef3-8bb1-3dbbe56811fb_sreenshot_1242x2208_0014_08_EN.png/392x696bb.png",
+        "bytes": 277511
+      }
+    ]
+  }
+}
