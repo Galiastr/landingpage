@@ -18,6 +18,15 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
   if (!await page.locator('link[rel="canonical"]').count()) errors.push(`${name}: canonical link is missing`)
   if (!await page.locator('link[rel="icon"]').count()) errors.push(`${name}: favicon link is missing`)
   if (await page.locator('.featured .project-card').count() !== 3) errors.push(`${name}: expected 3 featured case studies`)
+  if (name === 'desktop') {
+    const featuredBoxes = await page.locator('.featured .project-card').evaluateAll(cards => cards.map(card => {
+      const cardBox = card.getBoundingClientRect()
+      const visualBox = card.querySelector('.project-card__visual')?.getBoundingClientRect()
+      return { width: cardBox.width, height: cardBox.height, visualHeight: visualBox?.height ?? 0 }
+    }))
+    const spread = key => Math.max(...featuredBoxes.map(box => box[key])) - Math.min(...featuredBoxes.map(box => box[key]))
+    if (spread('width') > 2 || spread('height') > 2 || spread('visualHeight') > 2) errors.push(`desktop: featured cards are not equal-sized: ${JSON.stringify(featuredBoxes)}`)
+  }
   if (!await page.getByRole('heading', { name: 'Selected case studies' }).count()) errors.push(`${name}: featured section heading is missing`)
   if (cards !== 41) errors.push(`${name}: expected 41 project cards, got ${cards}`)
   if (overflow) errors.push(`${name}: horizontal overflow`)
@@ -44,6 +53,23 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
     if (await page.getByText('Media', { exact: true }).count()) errors.push('dialog still exposes media-count metadata')
     if (!await page.getByText('Focus', { exact: true }).count()) errors.push('dialog focus metadata is missing')
     if (!await page.locator('.project-navigation').count()) errors.push('project previous/next navigation is missing')
+    const dialogLayout = await page.locator('.project-dialog').evaluate(dialog => {
+      const dialogBox = dialog.getBoundingClientRect()
+      const gallery = dialog.querySelector('.dialog-gallery')
+      const galleryBox = gallery?.getBoundingClientRect()
+      const thumbnailsBox = gallery?.querySelector('.dialog-thumbnails')?.getBoundingClientRect()
+      const navigation = dialog.querySelector('.project-navigation')
+      const buttons = navigation ? [...navigation.querySelectorAll('button')].map(button => button.getBoundingClientRect()) : []
+      return {
+        galleryFillsHeight: !!galleryBox && Math.abs(galleryBox.bottom - dialogBox.bottom) <= 2,
+        galleryTailGap: galleryBox && thumbnailsBox ? galleryBox.bottom - thumbnailsBox.bottom : 0,
+        navigationOutsideGallery: !!navigation && !!gallery && !gallery.contains(navigation),
+        previousOutsideLeft: buttons.length === 2 && buttons[0].right <= dialogBox.left + 2,
+        nextOutsideRight: buttons.length === 2 && buttons[1].left >= dialogBox.right - 2,
+      }
+    })
+    if (!dialogLayout.galleryFillsHeight || dialogLayout.galleryTailGap > 2) errors.push(`dialog gallery has unused space: ${JSON.stringify(dialogLayout)}`)
+    if (!dialogLayout.navigationOutsideGallery || !dialogLayout.previousOutsideLeft || !dialogLayout.nextOutsideRight) errors.push(`project navigation is not positioned outside the modal sides: ${JSON.stringify(dialogLayout)}`)
     if (!new URL(page.url()).pathname.startsWith('/project/')) errors.push(`dialog permalink was not reflected in URL: ${page.url()}`)
     if (!await page.locator('.dialog-close').evaluate(element => element === document.activeElement)) errors.push('dialog did not focus close control')
     await page.keyboard.press('Shift+Tab')

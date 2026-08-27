@@ -85,6 +85,10 @@ function ProjectDialog({ project, projectContext, onClose, onNavigate }: { proje
   return <div className="dialog-backdrop" onMouseDown={event => event.target === event.currentTarget && onClose()}>
     <section ref={dialogRef} className="project-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
       <button ref={closeRef} className="dialog-close" onClick={onClose} aria-label="Close case study"><Close /></button>
+      {previousProject && nextProject && <nav className="project-navigation" aria-label="Project navigation">
+        <button onClick={() => onNavigate(previousProject)} aria-label={`Previous project: ${previousProject.title}`} title={previousProject.title}><span aria-hidden="true">←</span></button>
+        <button onClick={() => onNavigate(nextProject)} aria-label={`Next project: ${nextProject.title}`} title={nextProject.title}><span aria-hidden="true">→</span></button>
+      </nav>}
       <div className="dialog-gallery">
         <p className="sr-only" aria-live="polite" aria-atomic="true">Showing {selectedMedia.type} {activeMedia + 1} of {media.length}</p>
         <div className="dialog-media">
@@ -113,10 +117,6 @@ function ProjectDialog({ project, projectContext, onClose, onNavigate }: { proje
           {project.storeLinks?.map(link => <a key={`${link.platform}-${link.url}`} href={link.url} target="_blank" rel="noreferrer">{link.platform}<Arrow /></a>)}
         </div></div>}
         <p className="release-status"><span>Release status</span><strong>{project.releaseStatus ?? (project.storeLinks?.length ? 'Released' : 'Unpublished')}</strong></p>
-        {previousProject && nextProject && <nav className="project-navigation" aria-label="Project navigation">
-          <button onClick={() => onNavigate(previousProject)} aria-label={`Previous project: ${previousProject.title}`}><span>Previous project</span><strong>← {previousProject.title}</strong></button>
-          <button onClick={() => onNavigate(nextProject)} aria-label={`Next project: ${nextProject.title}`}><span>Next project</span><strong>{nextProject.title} →</strong></button>
-        </nav>}
       </div>
     </section>
   </div>
