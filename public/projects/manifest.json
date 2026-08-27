@@ -1,0 +1,110 @@
+{
+  "cricket-manager-pro": {
+    "path": "/projects/cricket-manager-pro.png",
+    "source": "https://cricketmanagerpro.com/wp-content/uploads/2023/02/unnamed.png",
+    "bytes": 2729,
+    "contentType": "image/png"
+  },
+  "relentless": {
+    "path": "/projects/relentless.png",
+    "source": "https://loom.games/img/hero-img.16a68fc8.png",
+    "bytes": 274492,
+    "contentType": "image/png"
+  },
+  "white-keep": {
+    "path": "/projects/white-keep.jpg",
+    "source": "https://granddevs.com/wp-content/uploads/2018/06/photo_2023-09-25_13-56-57.jpg",
+    "bytes": 60917,
+    "contentType": "image/jpeg"
+  },
+  "kids-fish": {
+    "path": "/projects/kids-fish.jpg",
+    "source": "https://granddevs.com/wp-content/uploads/2024/08/main_cut.jpg",
+    "bytes": 399590,
+    "contentType": "image/jpeg"
+  },
+  "kingdom-jump": {
+    "path": "/projects/kingdom-jump.png",
+    "source": "https://granddevs.com/wp-content/uploads/2023/09/1-1.png",
+    "bytes": 1792641,
+    "contentType": "image/png"
+  },
+  "chase-the-sun": {
+    "path": "/projects/chase-the-sun.jpg",
+    "source": "https://granddevs.com/wp-content/uploads/2024/08/2-6.jpg",
+    "bytes": 84112,
+    "contentType": "image/jpeg"
+  },
+  "crash-io": {
+    "path": "/projects/crash-io.png",
+    "source": "https://granddevs.com/wp-content/uploads/2023/09/image-29.png",
+    "bytes": 266032,
+    "contentType": "image/png"
+  },
+  "shopping-mall": {
+    "path": "/projects/shopping-mall.jpg",
+    "source": "https://granddevs.com/wp-content/uploads/2024/08/Clumsy-Walk_char-scaled.jpg",
+    "bytes": 296155,
+    "contentType": "image/jpeg"
+  },
+  "save-dan": {
+    "path": "/projects/save-dan.png",
+    "source": "https://granddevs.com/wp-content/uploads/2023/09/image-8.png",
+    "bytes": 310957,
+    "contentType": "image/png"
+  },
+  "friends-quest": {
+    "path": "/projects/friends-quest.png",
+    "source": "https://granddevs.com/wp-content/uploads/2023/09/screen-0.png",
+    "bytes": 505167,
+    "contentType": "image/png"
+  },
+  "hajwala": {
+    "path": "/projects/hajwala.png",
+    "source": "https://granddevs.com/wp-content/uploads/2023/09/image-20.png",
+    "bytes": 221021,
+    "contentType": "image/png"
+  },
+  "sudoku-social": {
+    "path": "/projects/sudoku-social.png",
+    "source": "https://granddevs.com/wp-content/uploads/2023/09/6186616d125d34bc3debd5cc_Social-Promo-v3.png",
+    "bytes": 620100,
+    "contentType": "image/png"
+  },
+  "manic-miner": {
+    "path": "/projects/manic-miner.jpg",
+    "source": "https://bbg-entertainment.com/wp-content/uploads/2026/08/MM-poster-768x1024-bigger-guy-384x488.jpg",
+    "bytes": 65976,
+    "contentType": "image/jpeg"
+  },
+  "boulder-dash-40": {
+    "path": "/projects/boulder-dash-40.jpg",
+    "source": "https://bbg-entertainment.com/wp-content/uploads/2024/08/BD40-poster-384x488.jpg",
+    "bytes": 62235,
+    "contentType": "image/jpeg"
+  },
+  "dynablaster": {
+    "path": "/projects/dynablaster.jpg",
+    "source": "https://bbg-entertainment.com/wp-content/uploads/2023/05/DB-poster-384x488.jpg",
+    "bytes": 71061,
+    "contentType": "image/jpeg"
+  },
+  "boulder-dash-deluxe": {
+    "path": "/projects/boulder-dash-deluxe.jpg",
+    "source": "https://bbg-entertainment.com/wp-content/uploads/2023/05/BDD-poster-384x488.jpg",
+    "bytes": 61792,
+    "contentType": "image/jpeg"
+  },
+  "astrosmash": {
+    "path": "/projects/astrosmash.jpg",
+    "source": "https://bbg-entertainment.com/wp-content/uploads/2023/05/astrosmash_web_poster-384x488.jpg",
+    "bytes": 41413,
+    "contentType": "image/jpeg"
+  },
+  "shark-shark": {
+    "path": "/projects/shark-shark.jpg",
+    "source": "https://bbg-entertainment.com/wp-content/uploads/2023/05/clipimage-6-384x488.jpg",
+    "bytes": 32142,
+    "contentType": "image/jpeg"
+  }
+}
