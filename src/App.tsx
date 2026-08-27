@@ -41,6 +41,11 @@ function ProjectCard({ project, onOpen, featured = false }: { project: Project; 
 function ProjectDialog({ project, onClose }: { project: Project; onClose: () => void }) {
   const closeRef = useRef<HTMLButtonElement>(null)
   const dialogRef = useRef<HTMLElement>(null)
+  const media = project.media?.length ? project.media : [{ type: 'image' as const, src: project.image, alt: `${project.title} project artwork` }]
+  const [activeMedia, setActiveMedia] = useState(0)
+  const selectedMedia = media[activeMedia] ?? media[0]
+  const sourceIsStoreLink = project.storeLinks?.some(link => link.url === project.internalSource)
+
   useEffect(() => {
     const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null
     const background = [...document.querySelectorAll<HTMLElement>('.site-header, main, footer')]
@@ -52,7 +57,7 @@ function ProjectDialog({ project, onClose }: { project: Project; onClose: () => 
         return
       }
       if (event.key !== 'Tab' || !dialogRef.current) return
-      const focusable = [...dialogRef.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')]
+      const focusable = [...dialogRef.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), video[controls], iframe, [tabindex]:not([tabindex="-1"])')]
       if (!focusable.length) return
       const first = focusable[0]
       const last = focusable[focusable.length - 1]
@@ -74,10 +79,22 @@ function ProjectDialog({ project, onClose }: { project: Project; onClose: () => 
     }
   }, [onClose])
 
-  return <div className="dialog-backdrop" onMouseDown={e => e.target === e.currentTarget && onClose()}>
+  return <div className="dialog-backdrop" onMouseDown={event => event.target === event.currentTarget && onClose()}>
     <section ref={dialogRef} className="project-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
       <button ref={closeRef} className="dialog-close" onClick={onClose} aria-label="Close case study"><Close /></button>
-      <div className="dialog-media"><img src={project.image} alt={`${project.title} project artwork`} /></div>
+      <div className="dialog-gallery">
+        <p className="sr-only" aria-live="polite" aria-atomic="true">Showing {selectedMedia.type} {activeMedia + 1} of {media.length}</p>
+        <div className="dialog-media">
+          {selectedMedia.type === 'image' && <img src={selectedMedia.src} alt={selectedMedia.alt ?? `${project.title} screenshot ${activeMedia + 1}`} />}
+          {selectedMedia.type === 'video' && <video key={selectedMedia.src} src={selectedMedia.src} poster={selectedMedia.poster} controls playsInline preload="metadata">Your browser does not support embedded video.</video>}
+          {selectedMedia.type === 'youtube' && <iframe src={selectedMedia.src} title={`${project.title} video`} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />}
+        </div>
+        {media.length > 1 && <div className="dialog-thumbnails" aria-label={`${project.title} media gallery`}>
+          {media.map((item, index) => <button key={`${item.src}-${index}`} className={index === activeMedia ? 'is-active' : ''} onClick={() => setActiveMedia(index)} aria-label={`Show ${item.type} ${index + 1}`} aria-pressed={index === activeMedia}>
+            {item.type === 'image' ? <img src={item.src} alt="" loading="lazy" /> : item.poster ? <img src={item.poster} alt="" loading="lazy" /> : <span>▶<small>Video</small></span>}
+          </button>)}
+        </div>}
+      </div>
       <div className="dialog-content">
         <p className="eyebrow">{project.kicker}</p>
         <h2 id="dialog-title">{project.title}</h2>
@@ -86,10 +103,13 @@ function ProjectDialog({ project, onClose }: { project: Project; onClose: () => 
         <div className="dialog-meta">
           <div><span>Engagement</span><strong>{project.engagement}</strong></div>
           <div><span>Platforms</span><strong>{project.platforms.join(' · ')}</strong></div>
-          <div><span>Evidence</span><strong>{project.evidence}</strong></div>
+          <div><span>Media</span><strong>{media.length} item{media.length === 1 ? '' : 's'}</strong></div>
         </div>
         <div className="dialog-tags">{project.capabilities.map(tag => <span key={tag}>{tag}</span>)}</div>
-        <a className="source-link" href={project.url} target="_blank" rel="noreferrer">View project source <Arrow /></a>
+        {(!!project.storeLinks?.length || (project.internalSource && !sourceIsStoreLink)) && <div className="store-links"><h3>Project links</h3><div>
+          {project.storeLinks?.map(link => <a key={`${link.platform}-${link.url}`} href={link.url} target="_blank" rel="noreferrer">{link.platform}<Arrow /></a>)}
+          {project.internalSource && !sourceIsStoreLink && <a href={project.internalSource} target="_blank" rel="noreferrer">Project source<Arrow /></a>}
+        </div></div>}
       </div>
     </section>
   </div>
@@ -120,7 +140,7 @@ function App() {
     <header className="site-header">
       <a className="wordmark" href="#top" aria-label="Stanislav Sorokin — home"><span>SS</span><strong>Stanislav Sorokin</strong></a>
       <nav aria-label="Primary navigation"><a href="#work">Work</a><a href="#expertise">Expertise</a><a href="#contact">Contact</a></nav>
-      <a className="availability" href="mailto:stansorokin14@gmail.com"><span></span>Available for selected projects</a>
+      <a className="availability" href="mailto:stansorokin14@gmail.com"><span className="availability__dot" aria-hidden="true"></span><span className="availability__full">Available for selected projects</span><span className="availability__compact">Available</span></a>
     </header>
 
     <main id="top">

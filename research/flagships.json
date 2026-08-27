@@ -1,0 +1,190 @@
+{
+  "titles": [
+    {
+      "title": "Cricket Manager Pro",
+      "slug": "cricket-manager-pro",
+      "product_facts": {
+        "official_product_page": "https://cricketmanagerpro.com",
+        "marketplace_links": [
+          {
+            "platform": "Google Play",
+            "url": "https://play.google.com/store/apps/details?id=com.wicketgaming.cricketmanager"
+          },
+          {
+            "platform": "App Store",
+            "url": "https://apps.apple.com/in/app/cricket-manager-pro-2022/id1631795331"
+          }
+        ],
+        "images": [
+          "https://cricketmanagerpro.com/wp-content/uploads/2023/02/cricketmanagerpro_logo.png",
+          "https://cricketmanagerpro.com/wp-content/uploads/2023/02/slide-home.png",
+          "https://cricketmanagerpro.com/wp-content/uploads/2023/02/slide-3d-map.png",
+          "https://cricketmanagerpro.com/wp-content/uploads/2023/02/slide-live-match.png",
+          "https://cricketmanagerpro.com/wp-content/uploads/2023/02/slide-store.png",
+          "https://cricketmanagerpro.com/wp-content/uploads/2023/02/slide-transfer.png"
+        ],
+        "videos": null
+      },
+      "contribution_facts": {
+        "role": "CTO / Lead Unity Developer",
+        "summary": "Product and technical ownership across gameplay, balancing, feature priorities, architecture and rapid iteration with multidisciplinary teams."
+      }
+    },
+    {
+      "title": "Relentless",
+      "slug": "relentless",
+      "product_facts": {
+        "official_product_page": "https://loom.games/en/",
+        "marketplace_links": [
+          {
+            "platform": "Google Play",
+            "url": "https://play.google.com/store/apps/details?id=games.loom.battleground"
+          },
+          {
+            "platform": "Steam",
+            "url": "https://store.steampowered.com/app/997630/Zombie_Battleground_TCG_BETA/"
+          }
+        ],
+        "images": [
+          "https://loom.games/img/relentless-logo.608273e2.png",
+          "https://loom.games/img/hero-img.16a68fc8.png",
+          "https://loom.games/img/download-board-sm.70dda601.png",
+          "https://loom.games/img/appstore.3ea95dda.png",
+          "https://loom.games/img/googleplay.de5f25b4.png",
+          "https://loom.games/img/steam.c0428457.png"
+        ],
+        "videos": [
+          "https://www.youtube.com/embed/IrX2yPp-5x8"
+        ]
+      },
+      "contribution_facts": {
+        "role": "Lead Game Programmer / Product Manager and Scrum Master",
+        "summary": "Coordinated Art, Backend and Frontend across a 20+ person team."
+      }
+    },
+    {
+      "title": "Christmas Sweeper 4",
+      "slug": "christmas-sweeper-4",
+      "product_facts": {
+        "official_product_page": "https://www.smileygamer.com/portfolio-item/03-christmas-sweeper-4/",
+        "marketplace_links": [
+          {
+            "platform": "App Store",
+            "url": "https://apps.apple.com/us/app/christmas-sweeper-4/id1413442151"
+          },
+          {
+            "platform": "Google Play",
+            "url": "https://play.google.com/store/apps/details?id=com.smileygamer.christmassweeper4&hl=en_US"
+          }
+        ],
+        "images": [
+          "https://www.smileygamer.com/wp-content/uploads/2017/08/cs4-banner.jpg",
+          "https://www.smileygamer.com/wp-content/uploads/2017/08/cs4-site-icon-1.png",
+          "https://www.smileygamer.com/wp-content/uploads/2017/08/screen1-5-300x225.jpg",
+          "https://www.smileygamer.com/wp-content/uploads/2017/08/screen2-5-300x225.jpg",
+          "https://www.smileygamer.com/wp-content/uploads/2017/08/screen3-5-300x225.jpg",
+          "https://www.smileygamer.com/wp-content/uploads/2017/08/screen4-5-300x225.jpg"
+        ],
+        "videos": [
+          "http://www.smileygamer.com/wp-content/uploads/2017/08/1280_720_30-3.mp4"
+        ]
+      },
+      "contribution_facts": null
+    },
+    {
+      "title": "Idle King / King Royale",
+      "slug": "idle-king-king-royale",
+      "product_facts": {
+        "official_product_page": "https://kingroyale.de/",
+        "marketplace_links": [
+          {
+            "platform": "App Store",
+            "url": "https://apps.apple.com/us/app/idle-king-tycoon-tap-games/id1479539390"
+          },
+          {
+            "platform": "Google Play",
+            "url": "https://play.google.com/store/apps/details?id=de.motap.idleking&hl=en&gl=US"
+          }
+        ],
+        "images": [
+          "https://kingroyale.de/wp-content/uploads/2023/02/kingroyalelogo.png",
+          "https://kingroyale.de/wp-content/uploads/2023/02/Fight_evil_enemies-1024x889-1.png",
+          "https://kingroyale.de/wp-content/uploads/2023/02/Front_text-copy-1-e1614011842255_new3.png",
+          "https://kingroyale.de/wp-content/uploads/2023/02/Download_on_the_App_Store_Badge.svg_-1024x304.png",
+          "https://kingroyale.de/wp-content/uploads/2023/02/google-play-badge.png"
+        ],
+        "videos": null
+      },
+      "contribution_facts": null
+    },
+    {
+      "title": "The Longest Tale",
+      "slug": "the-longest-tale",
+      "product_facts": {
+        "official_product_page": "https://store.steampowered.com/app/3507360/The_Longest_Tale",
+        "marketplace_links": [
+          {
+            "platform": "Steam",
+            "url": "https://store.steampowered.com/app/3507360/The_Longest_Tale"
+          }
+        ],
+        "images": [
+          "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3507360/1325bea52aebb25d771fe865c7e3b3927a019eec/page_bg_raw.jpg?t=1779381899",
+          "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3507360/58f0ca15168784d1c51e331f968ab6be298d1cda/header.jpg?t=1779381899",
+          "https://shared.fastly.steamstatic.com/community_assets/images/apps/3507360/aa92530cb20c0a4a77841074664e1734920493d0.jpg",
+          "https://shared.akamai.steamstatic.com/community_assets/images/apps/3507360/d0bd3b8c4e958718c2a3a2c23bb9b1bb7079f72e.jpg",
+          "https://shared.akamai.steamstatic.com/community_assets/images/apps/3507360/b4d6b5deb2f7609942623424ac66a49f43c8fb9f.jpg",
+          "https://shared.akamai.steamstatic.com/community_assets/images/apps/3507360/91e1c49ddd33d2d9fc4cef25b19ed46c7bf1a014.jpg"
+        ],
+        "videos": [
+          "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3507360/extras/fd04eb64ee9576befe77667cb81706e3.mp4?t=1779381899"
+        ]
+      },
+      "contribution_facts": null
+    },
+    {
+      "title": "The Guardians of Peace",
+      "slug": "the-guardians-of-peace",
+      "product_facts": {
+        "official_product_page": "https://playthegop.com/",
+        "marketplace_links": [
+          {
+            "platform": "Google Play",
+            "url": "https://play.google.com/store/apps/details?id=com.thetoolshed.theguardiansofpeace2022"
+          },
+          {
+            "platform": "App Store",
+            "url": "https://apps.apple.com/us/app/the-guardians-of-peace-2022/id1621003104?uo=2"
+          },
+          {
+            "platform": "Steam",
+            "url": "https://store.steampowered.com/app/1466620"
+          },
+          {
+            "platform": "Xbox",
+            "url": "https://www.xbox.com/en-US/games/store/the-guardians-of-peace/9pngj9grgk13"
+          },
+          {
+            "platform": "Amazon",
+            "url": "https://www.amazon.com/Guardians-Peace-Meditations-Jenna-Zell/dp/197725926X/ref=sr_1_1?m=A33IP1ROJEACUE&qid=1706652362&s=merchant-items&sr=1-1"
+          }
+        ],
+        "images": [
+          "https://playthegop.com/wp-content/uploads/2023/08/GOP_2D_Game_Posters_13x19_F1.png",
+          "https://playthegop.com/wp-content/uploads/2023/08/GOP_3D_Mentor_Strengh_Render_1-glow2c.webp",
+          "https://playthegop.com/wp-content/uploads/2023/08/learn-how-character1.webp",
+          "https://playthegop.com/wp-content/uploads/2023/08/logo-glow-1024x845-1.webp",
+          "https://playthegop.com/wp-content/uploads/2023/08/gameplay-list2-img.png",
+          "https://playthegop.com/wp-content/uploads/2023/08/CHAK_0003_Layer-4-3.png"
+        ],
+        "videos": [
+          "https://www.youtube.com/embed/ncV1n_VZoJo?feature=oembed",
+          "https://www.youtube.com/embed/e2Fe-nxFQA0?feature=oembed",
+          "https://www.youtube.com/embed/8vf6obqFNFo?feature=oembed",
+          "https://www.youtube.com/embed/ppVhCpc8JfA?feature=oembed"
+        ]
+      },
+      "contribution_facts": null
+    }
+  ]
+}
