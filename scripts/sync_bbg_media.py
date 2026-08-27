@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Download BBG publisher imagery into per-project hosted folders."""
 from pathlib import Path
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlsplit, urlunsplit
 import json
+import re
 
 from sync_granddevs_media import MAX_IMAGE_BYTES, MediaParser, download, extension, fetch, usable_image
 
@@ -17,6 +18,18 @@ PROJECTS = {
 OUT = Path(__file__).resolve().parents[1] / "public" / "projects"
 
 
+def original_image_url(url: str) -> str:
+    """Recover the original WordPress upload from ShortPixel thumbnails."""
+    parts = urlsplit(url)
+    if parts.netloc == "sp-ao.shortpixel.ai":
+        embedded = parts.path.find("/https://")
+        if embedded >= 0:
+            url = parts.path[embedded + 1 :]
+            parts = urlsplit(url)
+    path = re.sub(r"-\d+x\d+(?=\.(?:jpe?g|png|webp)$)", "", parts.path, flags=re.I)
+    return urlunsplit((parts.scheme, parts.netloc, path, parts.query, parts.fragment))
+
+
 def main() -> None:
     manifest: dict[str, object] = {}
     for slug, page_url in PROJECTS.items():
@@ -29,7 +42,7 @@ def main() -> None:
             parser.feed(html)
             candidates: list[str] = []
             for raw in parser.images:
-                candidate = urljoin(page_url, raw)
+                candidate = original_image_url(urljoin(page_url, raw))
                 if usable_image(candidate) and candidate not in candidates:
                     candidates.append(candidate)
             media: list[dict[str, object]] = []
