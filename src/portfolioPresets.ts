@@ -76,7 +76,12 @@ export function presetFromLocation(location: Pick<Location, 'pathname' | 'hash'>
 
 export function projectIdFromPath(pathname: string): string | null {
   const match = pathname.match(/^\/project\/([^/]+)\/?$/)
-  return match ? decodeURIComponent(match[1]) : null
+  if (!match) return null
+  try {
+    return decodeURIComponent(match[1])
+  } catch {
+    return null
+  }
 }
 
 export function projectsForPreset(preset: PortfolioPreset, projects: Project[]): Project[] {

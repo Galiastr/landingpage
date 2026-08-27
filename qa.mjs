@@ -60,6 +60,7 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
 
 {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } })
+  page.on('pageerror', err => errors.push(`routing pageerror: ${err.message}`))
   await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle' })
   await page.evaluate(() => { history.pushState({}, '', '/porting'); dispatchEvent(new PopStateEvent('popstate')) })
   if (!await page.getByRole('heading', { name: 'Console & PC porting' }).count()) errors.push('/porting: targeted heading is missing')
@@ -102,6 +103,10 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
   if (!await page.getByRole('heading', { name: 'Arcade games & classic franchises' }).count()) errors.push('#arcades: targeted heading is missing')
   await page.evaluate(() => { history.pushState({}, '', '/project/manic-miner'); dispatchEvent(new PopStateEvent('popstate')) })
   if (!await page.getByRole('dialog', { name: 'Manic Miner' }).count()) errors.push('direct project permalink did not open dialog')
+  await page.getByRole('button', { name: 'Close case study' }).click()
+  await page.evaluate(() => { history.pushState({}, '', '/project/%E0%A4%A'); dispatchEvent(new PopStateEvent('popstate')) })
+  if (!await page.getByRole('heading', { name: /Senior Unity Developer and Technical Lead/ }).count()) errors.push('malformed project permalink crashed instead of falling back safely')
+  if (await page.locator('[role="dialog"]').count()) errors.push('malformed project permalink opened a dialog')
   await page.close()
 }
 await browser.close()
