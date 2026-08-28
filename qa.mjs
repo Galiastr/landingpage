@@ -137,6 +137,10 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
   await page.evaluate(() => { history.pushState({}, '', '/project/%E0%A4%A'); dispatchEvent(new PopStateEvent('popstate')) })
   if (!await page.getByRole('heading', { name: /Senior Unity Developer and Technical Lead/ }).count()) errors.push('malformed project permalink crashed instead of falling back safely')
   if (await page.locator('[role="dialog"]').count()) errors.push('malformed project permalink opened a dialog')
+  await page.goto('http://127.0.0.1:4173/cv', { waitUntil: 'networkidle' })
+  if (!await page.getByRole('heading', { name: 'Stanislav Sorokin' }).count()) errors.push('/cv: heading missing')
+  const cvLink = page.locator('a[download]')
+  if (await cvLink.getAttribute('href') !== '/cv/Stanislav_Sorokin_CV.pdf') errors.push('/cv: download link points to the wrong PDF')
   await page.close()
 }
 await browser.close()
