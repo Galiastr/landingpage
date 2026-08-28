@@ -33,11 +33,11 @@ export type Project = {
   evidence: 'CV + public source' | 'CV' | 'Owner-attested + publisher' | 'Team portfolio'
 }
 
-type ProjectInput = Omit<Project, 'image' | 'media'> & { fallbackImage?: string; coverImage?: string; extraMedia?: MediaItem[] }
+type ProjectInput = Omit<Project, 'image' | 'media'> & { fallbackImage?: string; coverImage?: string; extraMedia?: MediaItem[]; excludeMedia?: string[] }
 
 function project(input: ProjectInput): Project {
-  const { fallbackImage = '/projects/chase-the-sun.jpg', coverImage, extraMedia = [], ...data } = input
-  const media = [...mediaFor(input.id), ...extraMedia]
+  const { fallbackImage = '/projects/chase-the-sun.jpg', coverImage, extraMedia = [], excludeMedia = [], ...data } = input
+  const media = [...mediaFor(input.id), ...extraMedia].filter(item => !excludeMedia.includes(item.src))
   const cover = coverImage ?? media.find(item => item.type === 'image')?.src ?? fallbackImage
   return { ...data, image: cover, media: media.length ? media : [{ type: 'image', src: cover }] }
 }
@@ -63,8 +63,9 @@ export const projects: Project[] = [
       { platform: 'Official site', url: 'https://loom.games/en/' },
       { platform: 'Kickstarter', url: 'https://www.kickstarter.com/projects/328862817/zombie-battleground-the-new-generation-of-ccg-tcg/' },
     ], releaseStatus: 'Legacy release',
-    fallbackImage: '/projects/relentless.png', internalSource: 'https://loom.games/en/', featured: true, evidence: 'CV + public source'
-    ,extraMedia: [
+    fallbackImage: '/projects/relentless.png', coverImage: '/projects/relentless/image-2.png', internalSource: 'https://loom.games/en/', featured: true, evidence: 'CV + public source',
+    excludeMedia: ['/projects/relentless/image-1.png'],
+    extraMedia: [
       { type: 'image', src: 'https://img.itch.zone/aW1hZ2UvMzQzNTQzLzIxMzcxOTYuanBn/original/yN6fVA.jpg' },
       { type: 'image', src: 'https://img.itch.zone/aW1hZ2UvMzQzNTQzLzE3MDQ0NjIuanBn/original/jk2ru2.jpg' },
       { type: 'image', src: 'https://img.itch.zone/aW1hZ2UvMzQzNTQzLzE3MDQ0NjMuanBn/original/iRa0GX.jpg' },
