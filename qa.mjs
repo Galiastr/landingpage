@@ -27,8 +27,8 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
     const spread = key => Math.max(...featuredBoxes.map(box => box[key])) - Math.min(...featuredBoxes.map(box => box[key]))
     if (spread('width') > 2 || spread('height') > 2 || spread('visualHeight') > 2) errors.push(`desktop: featured cards are not equal-sized: ${JSON.stringify(featuredBoxes)}`)
   }
-  if (!await page.getByRole('heading', { name: 'Selected case studies' }).count()) errors.push(`${name}: featured section heading is missing`)
-  if (cards !== 41) errors.push(`${name}: expected 41 project cards, got ${cards}`)
+  if (!await page.getByRole('heading', { name: 'Selected filtered case studies' }).count()) errors.push(`${name}: featured section heading is missing`)
+  if (cards !== 44) errors.push(`${name}: expected 44 project cards, got ${cards}`)
   if (overflow) errors.push(`${name}: horizontal overflow`)
   if (name === 'mobile' && !await page.locator('.availability__compact').isVisible()) errors.push('mobile: compact availability label is not visible')
   const cardImages = page.locator('.project-card img')
@@ -137,4 +137,4 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
 }
 await browser.close()
 if (errors.length) { console.error(errors.join('\n')); process.exit(1) }
-console.log('QA passed: desktop/mobile render, 41 cards, filters, gallery dialog, focus trap, Escape, no overflow or console errors')
+console.log('QA passed: desktop/mobile render, 44 cards, filters, gallery dialog, focus trap, Escape, no overflow or console errors')

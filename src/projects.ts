@@ -8,7 +8,7 @@ export type MediaItem = {
 }
 
 export type StoreLink = {
-  platform: 'Steam' | 'Xbox' | 'PlayStation' | 'Nintendo Switch' | 'Google Play' | 'App Store' | 'Official site' | 'Kickstarter'
+  platform: 'Steam' | 'Xbox' | 'PlayStation' | 'Nintendo Switch' | 'Google Play' | 'App Store' | 'Official site' | 'Kickstarter' | 'Epic Games Store'
   url: string
 }
 
@@ -29,14 +29,15 @@ export type Project = {
   releaseStatus?: 'Released' | 'In development' | 'Legacy release' | 'Unpublished'
   internalSource?: string
   featured?: boolean
+  hidden?: boolean
   evidence: 'CV + public source' | 'CV' | 'Owner-attested + publisher' | 'Team portfolio'
 }
 
-type ProjectInput = Omit<Project, 'image' | 'media'> & { fallbackImage?: string; coverImage?: string }
+type ProjectInput = Omit<Project, 'image' | 'media'> & { fallbackImage?: string; coverImage?: string; extraMedia?: MediaItem[] }
 
 function project(input: ProjectInput): Project {
-  const { fallbackImage = '/projects/chase-the-sun.jpg', coverImage, ...data } = input
-  const media = mediaFor(input.id)
+  const { fallbackImage = '/projects/chase-the-sun.jpg', coverImage, extraMedia = [], ...data } = input
+  const media = [...mediaFor(input.id), ...extraMedia]
   const cover = coverImage ?? media.find(item => item.type === 'image')?.src ?? fallbackImage
   return { ...data, image: cover, media: media.length ? media : [{ type: 'image', src: cover }] }
 }
@@ -50,20 +51,25 @@ export const projects: Project[] = [
     description: 'A mobile cricket-management game built from MVP through production and market launch.',
     contribution: 'CTO / Lead Unity Developer. Product and technical ownership across gameplay, balancing, feature priorities, architecture and rapid iteration with multidisciplinary teams.',
     engagement: 'Full production', genre: 'Sports management', platforms: ['iOS', 'Android'], capabilities: ['Unity', 'Gameplay', 'Architecture', 'LiveOps', 'Leadership'],
-    storeLinks: [
-      { platform: 'Official site', url: 'https://cricketmanagerpro.com' },
-    ], releaseStatus: 'Released',
-    internalSource: 'https://cricketmanagerpro.com', featured: true, evidence: 'CV + public source'
+    releaseStatus: 'Unpublished',
+    internalSource: 'https://cricketmanagerpro.com', featured: true, hidden: false, evidence: 'CV + public source'
   }),
   project({
     id: 'relentless', title: 'Relentless', kicker: 'Trading card game · Web3',
-    description: 'A strategic digital trading-card game built around collectible, player-owned cards, deck construction, competitive play and a cross-platform marketplace.',
+    description: 'A strategic digital trading-card game built around collectible, player-owned cards, deck construction, competitive play and a cross-platform marketplace. The Kickstarter campaign raised $321,606 from 1,693 backers.',
     contribution: 'Lead Game Programmer / Product Manager and Scrum Master, coordinating Art, Backend and Frontend across a 20+ person team.',
     engagement: 'Technical leadership', genre: 'Card game', platforms: ['PC', 'Mobile'], capabilities: ['Unity', 'Production', 'Web3', 'Leadership'],
     storeLinks: [
       { platform: 'Official site', url: 'https://loom.games/en/' },
+      { platform: 'Kickstarter', url: 'https://www.kickstarter.com/projects/328862817/zombie-battleground-the-new-generation-of-ccg-tcg/' },
     ], releaseStatus: 'Legacy release',
     fallbackImage: '/projects/relentless.png', internalSource: 'https://loom.games/en/', featured: true, evidence: 'CV + public source'
+    ,extraMedia: [
+      { type: 'image', src: 'https://img.itch.zone/aW1hZ2UvMzQzNTQzLzIxMzcxOTYuanBn/original/yN6fVA.jpg' },
+      { type: 'image', src: 'https://img.itch.zone/aW1hZ2UvMzQzNTQzLzE3MDQ0NjIuanBn/original/jk2ru2.jpg' },
+      { type: 'image', src: 'https://img.itch.zone/aW1hZ2UvMzQzNTQzLzE3MDQ0NjMuanBn/original/iRa0GX.jpg' },
+      { type: 'image', src: 'https://img.itch.zone/aW1hZ2UvMzQzNTQzLzE3MDQ0NjUuanBn/original/nenoCm.jpg' },
+    ]
   }),
   project({
     id: 'christmas-sweeper-4', title: 'Christmas Sweeper 4', kicker: 'Casual F2P · Match-3',
@@ -74,7 +80,9 @@ export const projects: Project[] = [
       { platform: 'App Store', url: 'https://apps.apple.com/app/id1413442151' },
       { platform: 'Google Play', url: 'https://play.google.com/store/apps/details?id=com.smileygamer.christmassweeper4' },
     ], releaseStatus: 'Released',
-    evidence: 'CV', fallbackImage: '/projects/chase-the-sun.jpg', internalSource: 'https://www.smileygamer.com/portfolio-item/03-christmas-sweeper-4/'
+    evidence: 'CV', fallbackImage: '/projects/chase-the-sun.jpg', internalSource: 'https://www.smileygamer.com/portfolio-item/03-christmas-sweeper-4/', extraMedia: [
+      { type: 'video', src: '/projects/christmas-sweeper-4/video-1.mp4', poster: '/projects/christmas-sweeper-4/image-5.jpg' },
+    ]
   }),
   project({
     id: 'idle-king', title: 'King Royale: Idle Tycoon RPG', kicker: 'Idle tycoon RPG · Mobile F2P',
@@ -84,7 +92,7 @@ export const projects: Project[] = [
     storeLinks: [
       { platform: 'App Store', url: 'https://apps.apple.com/us/app/king-royale-idle-tycoon-rpg/id1479539390' },
     ], releaseStatus: 'Released',
-    evidence: 'CV', fallbackImage: '/projects/shopping-mall.jpg', internalSource: 'https://kingroyale.de/'
+    evidence: 'CV', fallbackImage: '/projects/shopping-mall.jpg', coverImage: 'https://i3.ytimg.com/vi/vNDQMXJP8sw/hqdefault.jpg', internalSource: 'https://kingroyale.de/'
   }),
   project({
     id: 'the-longest-tale', title: 'The Longest Tale', kicker: 'Fantasy action RPG · Steam',
@@ -180,6 +188,10 @@ export const projects: Project[] = [
     description: 'A story-driven side-scrolling adventure presented through distinctive monochrome art direction.',
     contribution: 'Porting work represented in the GrandDevs team portfolio.',
     engagement: 'Porting', genre: 'Narrative adventure', platforms: ['PC', 'Console'], capabilities: ['Porting', 'Unity', 'Optimization'],
+    storeLinks: [
+      { platform: 'App Store', url: 'https://apps.apple.com/us/app/my-memory-of-us/id1474869488' },
+      { platform: 'Nintendo Switch', url: 'https://www.nintendo.com/us/store/products/my-memory-of-us-switch/' },
+    ],
     fallbackImage: '/projects/white-keep.jpg', internalSource: 'https://granddevs.com/index.php/portfolio-item/the-white-keep', featured: true, evidence: 'Team portfolio'
   }),
   project({
@@ -193,6 +205,7 @@ export const projects: Project[] = [
     id: 'time-travel', title: 'Time Travel', kicker: 'Educational · Interactive experience',
     description: 'An educational interactive project using game mechanics to explore historical and cultural content.',
     contribution: teamDesignContribution, engagement: 'Co-development', genre: 'Educational', platforms: ['Interactive'], capabilities: ['Unity', 'Interactive media', 'Game design'], evidence: 'Team portfolio'
+    , hidden: true
   }),
   project({
     id: 'brams', title: 'Brams', kicker: 'Educational · Interactive learning',
@@ -236,4 +249,48 @@ export const projects: Project[] = [
   project({ id: 'hajwala', title: 'Hajwala', kicker: 'Mobile racing & drifting', description: 'A vehicle simulation and drifting game focused on car culture, customization and competitive play.', contribution: teamContribution, engagement: 'Co-development', genre: 'Racing', platforms: ['Mobile'], capabilities: ['Unity', 'Vehicle physics', 'Optimization'], fallbackImage: '/projects/hajwala.png', evidence: 'Team portfolio' }),
   project({ id: 'sudoku-social', title: 'Sudoku Social', kicker: 'Cross-play puzzle game', description: 'Classic Sudoku with global leaderboards, friend challenges, themes and account-based cross-play.', contribution: teamContribution, engagement: 'Co-development', genre: 'Puzzle', platforms: ['Android', 'iOS'], capabilities: ['Unity', 'Online features', 'UI/UX'], fallbackImage: '/projects/sudoku-social.png', featured: true, evidence: 'Team portfolio' }),
   project({ id: 'ido-soccer', title: 'Ido Soccer', kicker: 'Gamified sport · Connected fitness', description: 'A gamified training experience where real walking, running or cycling controls an online avatar.', contribution: teamContribution, engagement: 'Co-development', genre: 'Sports / Fitness', platforms: ['iOS'], capabilities: ['Unity', 'Real-time systems', 'Gamification'], evidence: 'Team portfolio' }),
+
+  project({
+    id: 'fast-food-master-2025', title: 'Fast Food Master 2025', kicker: 'Simulation · Epic Games Store',
+    description: 'A next-gen restaurant simulation built in Unreal Engine, where you start with a humble food stand and grow a fast-food empire.',
+    contribution: 'Production and gameplay coordination represented in the portfolio with public store pages.',
+    engagement: 'Co-development', genre: 'Simulation', platforms: ['PC', 'PlayStation', 'Xbox'], capabilities: ['Gameplay', 'Simulation', 'UI/UX'],
+    storeLinks: [{ platform: 'Epic Games Store', url: 'https://store.epicgames.com/p/fast-food-master-2025-b938e0?lang=pl' }],
+    coverImage: 'https://image.api.playstation.com/vulcan/ap/rnd/202503/0514/2ac519dc70bb9e9c6bb3ddaaae27a94dbbac5596a3c1e38a.jpg',
+    internalSource: 'https://store.epicgames.com/p/fast-food-master-2025-b938e0?lang=pl', evidence: 'CV + public source'
+  }),
+  project({
+    id: 'digging-a-hole-simulator', title: 'Digging A Hole Simulator', kicker: 'Adventure · Nintendo Switch',
+    description: 'A darkly funny digging adventure about escaping a crumbling Alcatraz-style setting with a plastic spoon.',
+    contribution: 'Portfolio listing for the Nintendo Switch release page and related public materials.',
+    engagement: 'Co-development', genre: 'Adventure', platforms: ['Nintendo Switch'], capabilities: ['Porting', 'Adventure', 'Puzzle'],
+    storeLinks: [{ platform: 'Nintendo Switch', url: 'https://www.nintendo.com/us/store/products/digging-a-hole-simulator-switch/' }],
+    coverImage: 'https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/store/software/switch/70010000096598/771a90da55726358383b7bd422a8a0190d68424ec721920989803a94c0645062',
+    internalSource: 'https://www.nintendo.com/us/store/products/digging-a-hole-simulator-switch/', evidence: 'CV + public source'
+  }),
+  project({
+    id: 'schoolboy-escape', title: 'Schoolboy Escape', kicker: 'Adventure · Switch / Xbox',
+    description: 'A stealthy puzzle-adventure about planning an escape while the house is on high alert.',
+    contribution: 'Public store listing surfaced in the portfolio as another release target.',
+    engagement: 'Co-development', genre: 'Adventure', platforms: ['Nintendo Switch', 'Xbox'], capabilities: ['Adventure', 'Puzzle', 'Platform delivery'],
+    storeLinks: [
+      { platform: 'Nintendo Switch', url: 'https://www.nintendo.com/us/store/products/schoolboy-escape-switch/' },
+      { platform: 'Xbox', url: 'https://www.xbox.com/pl-PL/games/store/schoolboy-escape-xbox-edition/9ngm3hrsk106' },
+    ],
+    coverImage: 'https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/store/software/switch/70010000095962/d391e3450c167e8c3cee029474c0ff3761bdb35024da539140660bf4359ee586',
+    internalSource: 'https://www.nintendo.com/us/store/products/schoolboy-escape-switch/', evidence: 'CV + public source'
+  }),
+  project({
+    id: 'cyberpunk-hacker', title: 'Cyberpunk Hacker', kicker: 'Cyberpunk · Nintendo / Epic',
+    description: 'A neon-drenched cyberpunk title presented through public store pages on Nintendo Switch, Epic Games Store and Xbox.',
+    contribution: 'Added as a new portfolio entry from public store pages supplied during review.',
+    engagement: 'Co-development', genre: 'Cyberpunk action', platforms: ['Nintendo Switch', 'Epic Games Store', 'Xbox'], capabilities: ['Action', 'Puzzle', 'Platform delivery'],
+    storeLinks: [
+      { platform: 'Nintendo Switch', url: 'https://www.nintendo.com/en-gb/Games/Nintendo-Switch-download-software/Cyberpunk-Hacker-2660907.html?srsltid=AfmBOoqXk4v_r5FkYC-bQDHRhm13hmgZqWJdpzCGhLucNExB0hvpssOk' },
+      { platform: 'Epic Games Store', url: 'https://store.epicgames.com/p/cyberpunk-hacker-5cac5c' },
+      { platform: 'Xbox', url: 'https://www.xbox.com/en-US/games/store/cyberpunk-hacker/9MSNXVRWFF6S' },
+    ],
+    coverImage: 'https://www.nintendo.com/eu/media/images/assets/nintendo_switch_games/cyberpunkhacker/2x1_CyberpunkHacker_image1280w.jpg',
+    internalSource: 'https://www.nintendo.com/en-gb/Games/Nintendo-Switch-download-software/Cyberpunk-Hacker-2660907.html?srsltid=AfmBOoqXk4v_r5FkYC-bQDHRhm13hmgZqWJdpzCGhLucNExB0hvpssOk', evidence: 'CV + public source'
+  }),
 ]

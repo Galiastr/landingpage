@@ -15,7 +15,7 @@ export type PortfolioPreset = {
 
 export const portfolioPresets: Record<PresetSlug, PortfolioPreset> = {
   home: {
-    slug: 'home', path: '/', label: 'Selected', title: 'Selected case studies',
+    slug: 'home', path: '/', label: 'Selected Filtered', title: 'Selected filtered case studies',
     description: 'A focused cross-section of production ownership, technical leadership and multi-platform delivery.',
     projectIds: ['cricket-manager-pro', 'relentless', 'manic-miner'],
     seoTitle: 'Stanislav Sorokin — Senior Unity Developer & Technical Lead',
@@ -85,5 +85,7 @@ export function projectIdFromPath(pathname: string): string | null {
 }
 
 export function projectsForPreset(preset: PortfolioPreset, projects: Project[]): Project[] {
-  return preset.projectIds.map(id => projects.find(project => project.id === id)).filter((project): project is Project => Boolean(project))
+  return preset.projectIds
+    .map(id => projects.find(project => project.id === id && !project.hidden))
+    .filter((project): project is Project => Boolean(project))
 }

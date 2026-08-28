@@ -123,24 +123,25 @@ function ProjectDialog({ project, projectContext, onClose, onNavigate }: { proje
 }
 
 function App() {
-  const initialProject = projects.find(project => project.id === projectIdFromPath(window.location.pathname)) ?? null
+  const visibleProjects = useMemo(() => projects.filter(project => !project.hidden), [])
+  const initialProject = visibleProjects.find(project => project.id === projectIdFromPath(window.location.pathname)) ?? null
   const [filters, setFilters] = useState<FilterState>(emptyFilters)
   const [search, setSearch] = useState('')
   const [, setRouteVersion] = useState(0)
   const [selected, setSelected] = useState<Project | null>(initialProject)
-  const [selectedContext, setSelectedContext] = useState<Project[]>(projects)
+  const [selectedContext, setSelectedContext] = useState<Project[]>(visibleProjects)
   const historyReturnPath = projectIdFromPath(window.location.pathname) ? (window.history.state as { returnPath?: string } | null)?.returnPath : null
   const presetLocation = historyReturnPath ? new URL(historyReturnPath, window.location.origin) : window.location
   const preset = presetFromLocation(presetLocation)
   const returnPathRef = useRef(historyReturnPath ?? preset.path)
-  const featuredProjects = useMemo(() => projectsForPreset(preset, projects), [preset])
+  const featuredProjects = useMemo(() => projectsForPreset(preset, visibleProjects), [preset, visibleProjects])
   const options = useMemo(() => ({
-    engagement: [...new Set(projects.map(p => p.engagement))].sort(),
-    genre: [...new Set(projects.map(p => p.genre))].sort(),
-    platforms: [...new Set(projects.flatMap(p => p.platforms))].sort(),
-    capabilities: [...new Set(projects.flatMap(p => p.capabilities))].sort(),
-  }), [])
-  const results = useMemo(() => projects.filter(project => {
+    engagement: [...new Set(visibleProjects.map(p => p.engagement))].sort(),
+    genre: [...new Set(visibleProjects.map(p => p.genre))].sort(),
+    platforms: [...new Set(visibleProjects.flatMap(p => p.platforms))].sort(),
+    capabilities: [...new Set(visibleProjects.flatMap(p => p.capabilities))].sort(),
+  }), [visibleProjects])
+  const results = useMemo(() => visibleProjects.filter(project => {
     const query = search.trim().toLowerCase()
     const searchable = [project.title, project.description, project.contribution, project.genre, ...project.platforms, ...project.capabilities].join(' ').toLowerCase()
     return (!query || searchable.includes(query)) &&
@@ -148,7 +149,7 @@ function App() {
       (filters.genre === 'All' || project.genre === filters.genre) &&
       (filters.platforms === 'All' || project.platforms.includes(filters.platforms)) &&
       (filters.capabilities === 'All' || project.capabilities.includes(filters.capabilities))
-  }), [filters, search])
+  }), [filters, search, visibleProjects])
   const activeFilterCount = Object.values(filters).filter(v => v !== 'All').length + (search.trim() ? 1 : 0)
 
   const openProject = useCallback((project: Project, context: Project[]) => {
@@ -185,8 +186,8 @@ function App() {
       const returnPath = (window.history.state as { returnPath?: string } | null)?.returnPath
       if (returnPath) returnPathRef.current = returnPath
       else if (!projectId) returnPathRef.current = `${window.location.pathname}${window.location.hash}`
-      setSelected(projects.find(project => project.id === projectId) ?? null)
-      if (!projectId) setSelectedContext(projects)
+      setSelected(visibleProjects.find(project => project.id === projectId) ?? null)
+      if (!projectId) setSelectedContext(visibleProjects)
       setRouteVersion(version => version + 1)
     }
     window.addEventListener('popstate', syncRoute)
@@ -195,7 +196,7 @@ function App() {
       window.removeEventListener('popstate', syncRoute)
       window.removeEventListener('hashchange', syncRoute)
     }
-  }, [])
+  }, [visibleProjects])
 
   useEffect(() => {
     const canonicalPath = selected ? `/project/${selected.id}` : preset.path
