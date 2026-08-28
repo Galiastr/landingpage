@@ -199,7 +199,12 @@ export const projects: Project[] = [
     description: 'A mobile brain-training game built around varied cognitive exercises and accessible daily sessions.',
     contribution: teamContribution, engagement: 'Co-development', genre: 'Educational', platforms: ['Android'], capabilities: ['Unity', 'Gameplay', 'UI/UX'],
     storeLinks: [{ platform: 'Google Play', url: 'https://play.google.com/store/apps/details?id=de.bbg.EinsteinHD&hl=en' }],
-    evidence: 'Team portfolio', fallbackImage: '/projects/kids-fish.jpg'
+    evidence: 'Team portfolio', fallbackImage: '/projects/kids-fish.jpg', extraMedia: [
+      { type: 'image', src: 'https://play-lh.googleusercontent.com/7PzUkiNdA955TdCo8-N7DbxNEmhAZiRYnMHyPQr_b51yFEiCUKhsf1MVpIoyXmRY7wHuU7ZSUkl9QrJUzVpi=w1052-h592', alt: 'Einstein Brain Trainer screenshot 1' },
+      { type: 'image', src: 'https://play-lh.googleusercontent.com/4GlBy0CGbagP3cWpxsjG0oRjiQ6Na0GQTxXirsG7_6sm-8naUjMjmliCerwDCk9hVys1c7NZHNJSFLnQ0sM8bg=w1052-h592', alt: 'Einstein Brain Trainer screenshot 2' },
+      { type: 'image', src: 'https://play-lh.googleusercontent.com/khlSyMuqAHfWKK6xMCu429hRmWk1Z4lefWj_rTzoDumjyuDtxtpFL0KiD3S4JsS-fGWvCt7_CJvNHUCqbxO1Ag=w1052-h592', alt: 'Einstein Brain Trainer screenshot 3' },
+      { type: 'image', src: 'https://play-lh.googleusercontent.com/aHQcugcjDnrTYeMJME1hxeBz-ifawEnbamt6cVjsiunvMNYDf2FOvCpENjf7tP8-YOarustJ9ctkjzwe4XvFWA=w1052-h592', alt: 'Einstein Brain Trainer screenshot 4' },
+    ]
   }),
   project({
     id: 'time-travel', title: 'Time Travel', kicker: 'Educational · Interactive experience',
@@ -251,45 +256,49 @@ export const projects: Project[] = [
   project({ id: 'ido-soccer', title: 'Ido Soccer', kicker: 'Gamified sport · Connected fitness', description: 'A gamified training experience where real walking, running or cycling controls an online avatar.', contribution: teamContribution, engagement: 'Co-development', genre: 'Sports / Fitness', platforms: ['iOS'], capabilities: ['Unity', 'Real-time systems', 'Gamification'], evidence: 'Team portfolio' }),
 
   project({
-    id: 'fast-food-master-2025', title: 'Fast Food Master 2025', kicker: 'Simulation · Epic Games Store',
-    description: 'A next-gen restaurant simulation built in Unreal Engine, where you start with a humble food stand and grow a fast-food empire.',
-    contribution: 'Production and gameplay coordination represented in the portfolio with public store pages.',
-    engagement: 'Co-development', genre: 'Simulation', platforms: ['PC', 'PlayStation', 'Xbox'], capabilities: ['Gameplay', 'Simulation', 'UI/UX'],
+    id: 'fast-food-master-2025', title: 'Fast Food Master 2025', kicker: 'Windows-first simulation · multi-platform plan',
+    description: 'A fast-food management sim being finished for Windows, with public storefront coverage for selected platforms and a broader multi-platform rollout planned.',
+    contribution: 'Windows-first production and gameplay coordination; public store pages exist for some target platforms while wider platform planning continues.',
+    engagement: 'Co-development', genre: 'Simulation', platforms: ['Windows', 'PlayStation', 'Xbox'], capabilities: ['Gameplay', 'Simulation', 'UI/UX'],
     storeLinks: [{ platform: 'Epic Games Store', url: 'https://store.epicgames.com/p/fast-food-master-2025-b938e0?lang=pl' }],
+    releaseStatus: 'In development',
     coverImage: 'https://image.api.playstation.com/vulcan/ap/rnd/202503/0514/2ac519dc70bb9e9c6bb3ddaaae27a94dbbac5596a3c1e38a.jpg',
     internalSource: 'https://store.epicgames.com/p/fast-food-master-2025-b938e0?lang=pl', evidence: 'CV + public source'
   }),
   project({
-    id: 'digging-a-hole-simulator', title: 'Digging A Hole Simulator', kicker: 'Adventure · Nintendo Switch',
-    description: 'A darkly funny digging adventure about escaping a crumbling Alcatraz-style setting with a plastic spoon.',
-    contribution: 'Portfolio listing for the Nintendo Switch release page and related public materials.',
-    engagement: 'Co-development', genre: 'Adventure', platforms: ['Nintendo Switch'], capabilities: ['Porting', 'Adventure', 'Puzzle'],
+    id: 'digging-a-hole-simulator', title: 'Digging A Hole Simulator', kicker: 'Windows-first adventure · console rollout',
+    description: 'A darkly funny digging adventure being finished for Windows, with public release coverage on consoles as part of the wider platform plan.',
+    contribution: 'Windows-first project work and port planning reflected in the portfolio; public release pages remain for selected targets.',
+    engagement: 'Co-development', genre: 'Adventure', platforms: ['Windows', 'Nintendo Switch'], capabilities: ['Porting', 'Adventure', 'Puzzle'],
     storeLinks: [{ platform: 'Nintendo Switch', url: 'https://www.nintendo.com/us/store/products/digging-a-hole-simulator-switch/' }],
+    releaseStatus: 'In development',
     coverImage: 'https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/store/software/switch/70010000096598/771a90da55726358383b7bd422a8a0190d68424ec721920989803a94c0645062',
     internalSource: 'https://www.nintendo.com/us/store/products/digging-a-hole-simulator-switch/', evidence: 'CV + public source'
   }),
   project({
-    id: 'schoolboy-escape', title: 'Schoolboy Escape', kicker: 'Adventure · Switch / Xbox',
-    description: 'A stealthy puzzle-adventure about planning an escape while the house is on high alert.',
-    contribution: 'Public store listing surfaced in the portfolio as another release target.',
-    engagement: 'Co-development', genre: 'Adventure', platforms: ['Nintendo Switch', 'Xbox'], capabilities: ['Adventure', 'Puzzle', 'Platform delivery'],
+    id: 'schoolboy-escape', title: 'Schoolboy Escape', kicker: 'Windows-first adventure · multi-platform plan',
+    description: 'A stealthy puzzle-adventure being finished for Windows, with additional platform releases planned where public store pages already exist.',
+    contribution: 'Windows-first development and platform planning; public pages exist for some release targets, but not every platform is published yet.',
+    engagement: 'Co-development', genre: 'Adventure', platforms: ['Windows', 'Nintendo Switch', 'Xbox'], capabilities: ['Adventure', 'Puzzle', 'Platform delivery'],
     storeLinks: [
       { platform: 'Nintendo Switch', url: 'https://www.nintendo.com/us/store/products/schoolboy-escape-switch/' },
       { platform: 'Xbox', url: 'https://www.xbox.com/pl-PL/games/store/schoolboy-escape-xbox-edition/9ngm3hrsk106' },
     ],
+    releaseStatus: 'In development',
     coverImage: 'https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/store/software/switch/70010000095962/d391e3450c167e8c3cee029474c0ff3761bdb35024da539140660bf4359ee586',
     internalSource: 'https://www.nintendo.com/us/store/products/schoolboy-escape-switch/', evidence: 'CV + public source'
   }),
   project({
-    id: 'cyberpunk-hacker', title: 'Cyberpunk Hacker', kicker: 'Cyberpunk · Nintendo / Epic',
-    description: 'A neon-drenched cyberpunk title presented through public store pages on Nintendo Switch, Epic Games Store and Xbox.',
-    contribution: 'Added as a new portfolio entry from public store pages supplied during review.',
-    engagement: 'Co-development', genre: 'Cyberpunk action', platforms: ['Nintendo Switch', 'Epic Games Store', 'Xbox'], capabilities: ['Action', 'Puzzle', 'Platform delivery'],
+    id: 'cyberpunk-hacker', title: 'Cyberpunk Hacker', kicker: 'Windows-first cyberpunk · multi-platform plan',
+    description: 'A neon-drenched cyberpunk title being finished for Windows, with public store pages already covering several of the planned platforms.',
+    contribution: 'Windows-first development and platform rollout planning; some platform releases are public already, while others remain in production.',
+    engagement: 'Co-development', genre: 'Cyberpunk action', platforms: ['Windows', 'Nintendo Switch', 'Epic Games Store', 'Xbox'], capabilities: ['Action', 'Puzzle', 'Platform delivery'],
     storeLinks: [
       { platform: 'Nintendo Switch', url: 'https://www.nintendo.com/en-gb/Games/Nintendo-Switch-download-software/Cyberpunk-Hacker-2660907.html?srsltid=AfmBOoqXk4v_r5FkYC-bQDHRhm13hmgZqWJdpzCGhLucNExB0hvpssOk' },
       { platform: 'Epic Games Store', url: 'https://store.epicgames.com/p/cyberpunk-hacker-5cac5c' },
       { platform: 'Xbox', url: 'https://www.xbox.com/en-US/games/store/cyberpunk-hacker/9MSNXVRWFF6S' },
     ],
+    releaseStatus: 'In development',
     coverImage: 'https://www.nintendo.com/eu/media/images/assets/nintendo_switch_games/cyberpunkhacker/2x1_CyberpunkHacker_image1280w.jpg',
     internalSource: 'https://www.nintendo.com/en-gb/Games/Nintendo-Switch-download-software/Cyberpunk-Hacker-2660907.html?srsltid=AfmBOoqXk4v_r5FkYC-bQDHRhm13hmgZqWJdpzCGhLucNExB0hvpssOk', evidence: 'CV + public source'
   }),

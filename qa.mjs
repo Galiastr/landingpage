@@ -66,9 +66,13 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
         navigationOutsideGallery: !!navigation && !!gallery && !gallery.contains(navigation),
         previousOutsideLeft: buttons.length === 2 && buttons[0].right <= dialogBox.left + 2,
         nextOutsideRight: buttons.length === 2 && buttons[1].left >= dialogBox.right - 2,
+        thumbnailsCentered: !!galleryBox && !!thumbnailsBox && (
+          thumbnailsBox.width >= galleryBox.width - 4 || Math.abs((thumbnailsBox.left + thumbnailsBox.width / 2) - (galleryBox.left + galleryBox.width / 2)) <= 4
+        ),
       }
     })
     if (!dialogLayout.galleryFillsHeight || dialogLayout.galleryTailGap > 2) errors.push(`dialog gallery has unused space: ${JSON.stringify(dialogLayout)}`)
+    if (!dialogLayout.thumbnailsCentered) errors.push(`dialog thumbnails are not centered horizontally: ${JSON.stringify(dialogLayout)}`)
     if (!dialogLayout.navigationOutsideGallery || !dialogLayout.previousOutsideLeft || !dialogLayout.nextOutsideRight) errors.push(`project navigation is not positioned outside the modal sides: ${JSON.stringify(dialogLayout)}`)
     if (!new URL(page.url()).pathname.startsWith('/project/')) errors.push(`dialog permalink was not reflected in URL: ${page.url()}`)
     if (!await page.locator('.dialog-close').evaluate(element => element === document.activeElement)) errors.push('dialog did not focus close control')
