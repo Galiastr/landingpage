@@ -63,7 +63,7 @@ export const projects: Project[] = [
       { platform: 'Official site', url: 'https://loom.games/en/' },
       { platform: 'Kickstarter', url: 'https://www.kickstarter.com/projects/328862817/zombie-battleground-the-new-generation-of-ccg-tcg/' },
     ], releaseStatus: 'Legacy release',
-    fallbackImage: '/projects/relentless.png', coverImage: '/projects/relentless/image-2.png', internalSource: 'https://loom.games/en/', featured: true, evidence: 'CV + public source',
+    fallbackImage: '/projects/relentless.png', coverImage: 'https://img.itch.zone/aW1hZ2UvMzQzNTQzLzIxMzcxOTYuanBn/original/yN6fVA.jpg', internalSource: 'https://loom.games/en/', featured: true, evidence: 'CV + public source',
     excludeMedia: ['/projects/relentless/image-1.png'],
     extraMedia: [
       { type: 'image', src: 'https://img.itch.zone/aW1hZ2UvMzQzNTQzLzIxMzcxOTYuanBn/original/yN6fVA.jpg' },
@@ -254,7 +254,19 @@ export const projects: Project[] = [
   project({ id: 'friends-quest', title: 'Friends Quest', kicker: 'Underwater endless runner', description: 'An underwater runner with upgradeable abilities, character variety and colorful environments.', contribution: teamContribution, engagement: 'Co-development', genre: 'Endless runner', platforms: ['Mobile'], capabilities: ['Unity', 'Gameplay', 'Content systems'], fallbackImage: '/projects/friends-quest.png', evidence: 'Team portfolio' }),
   project({ id: 'hajwala', title: 'Hajwala', kicker: 'Mobile racing & drifting', description: 'A vehicle simulation and drifting game focused on car culture, customization and competitive play.', contribution: teamContribution, engagement: 'Co-development', genre: 'Racing', platforms: ['Mobile'], capabilities: ['Unity', 'Vehicle physics', 'Optimization'], fallbackImage: '/projects/hajwala.png', evidence: 'Team portfolio' }),
   project({ id: 'sudoku-social', title: 'Sudoku Social', kicker: 'Cross-play puzzle game', description: 'Classic Sudoku with global leaderboards, friend challenges, themes and account-based cross-play.', contribution: teamContribution, engagement: 'Co-development', genre: 'Puzzle', platforms: ['Android', 'iOS'], capabilities: ['Unity', 'Online features', 'UI/UX'], fallbackImage: '/projects/sudoku-social.png', featured: true, evidence: 'Team portfolio' }),
-  project({ id: 'ido-soccer', title: 'Ido Soccer', kicker: 'Gamified sport · Connected fitness', description: 'A gamified training experience where real walking, running or cycling controls an online avatar.', contribution: teamContribution, engagement: 'Co-development', genre: 'Sports / Fitness', platforms: ['iOS'], capabilities: ['Unity', 'Real-time systems', 'Gamification'], evidence: 'Team portfolio' }),
+  project({
+    id: 'esport-ido', title: 'esport.ido', kicker: 'White-label sports SaaS · Gamified connected fitness',
+    description: 'A white-label SaaS platform that turns everyday movement into an interactive, gamified sports experience. Activity captured through smartphones, wearables and connected cardio equipment feeds community challenges, progression, XP, virtual rewards and exclusive fan experiences. The broader product connects athletes, clubs, brands and fan communities through video and live content, subscriptions, donations, commerce, ticketing and sponsor activations—bridging digital entertainment with measurable real-world activity.',
+    contribution: teamContribution, engagement: 'Co-development', genre: 'Sports SaaS / Connected Fitness', platforms: ['Mobile', 'Web', 'Wearables'], capabilities: ['Unity', 'SaaS', 'Gamification', 'Connected fitness', 'Wearables', 'Live services'],
+    storeLinks: [{ platform: 'Official site', url: 'https://idostarzn.com/esportido' }], releaseStatus: 'In development',
+    coverImage: '/projects/esport-ido/training-with-alex-freitag.png', internalSource: 'https://idostarzn.com/esportido', evidence: 'Owner-attested + publisher',
+    extraMedia: [
+      { type: 'image', src: '/projects/esport-ido/training-with-alex-freitag.png', alt: 'esport.ido gamified training session with footballer Alex Freitag' },
+      { type: 'image', src: '/projects/esport-ido/worlds-selection.png', alt: 'esport.ido sports communities and world selection screen' },
+      { type: 'image', src: '/projects/esport-ido/training-results.jpg', alt: 'esport.ido real-world training results with distance, calories, coins and XP' },
+      { type: 'video', src: '/projects/esport-ido/esport-ido-demo.mp4', poster: '/projects/esport-ido/training-with-alex-freitag.png', alt: 'esport.ido connected fitness product demonstration' },
+    ]
+  }),
 
   project({
     id: 'fast-food-master-2025', title: 'Fast Food Master 2025', kicker: 'Windows-first simulation · multi-platform plan',

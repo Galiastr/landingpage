@@ -517,22 +517,22 @@ const projectMedia = {
       "src": "/projects/sudoku-social/image-4.jpg"
     }
   ],
-  "ido-soccer": [
+  "esport-ido": [
     {
       "type": "image",
-      "src": "/projects/ido-soccer/image-2.png"
+      "src": "/projects/esport-ido/image-2.png"
     },
     {
       "type": "image",
-      "src": "/projects/ido-soccer/image-3.png"
+      "src": "/projects/esport-ido/image-3.png"
     },
     {
       "type": "image",
-      "src": "/projects/ido-soccer/image-4.png"
+      "src": "/projects/esport-ido/image-4.png"
     },
     {
       "type": "image",
-      "src": "/projects/ido-soccer/image-5.png"
+      "src": "/projects/esport-ido/image-5.png"
     }
   ],
   "manic-miner": [
@@ -849,10 +849,6 @@ const projectMedia = {
     {
       "type": "image",
       "src": "/projects/relentless/image-2.png"
-    },
-    {
-      "type": "image",
-      "src": "/projects/relentless/image-3.png"
     }
   ],
   "christmas-sweeper-4": [

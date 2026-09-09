@@ -137,7 +137,24 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
   await page.evaluate(() => { history.pushState({}, '', '/project/%E0%A4%A'); dispatchEvent(new PopStateEvent('popstate')) })
   if (!await page.getByRole('heading', { name: /Senior Unity Developer and Technical Lead/ }).count()) errors.push('malformed project permalink crashed instead of falling back safely')
   if (await page.locator('[role="dialog"]').count()) errors.push('malformed project permalink opened a dialog')
-  await page.goto('http://127.0.0.1:4173/cv', { waitUntil: 'networkidle' })
+
+  await page.goto('http://127.0.0.1:4173/project/esport-ido', { waitUntil: 'networkidle' })
+  if (!await page.getByRole('dialog', { name: 'esport.ido' }).count()) errors.push('esport.ido direct permalink did not open the renamed case study')
+  const esportSite = page.getByRole('link', { name: 'Official site' })
+  if (await esportSite.getAttribute('href') !== 'https://idostarzn.com/esportido') errors.push('esport.ido official site link is missing or incorrect')
+  if (!await page.getByText(/white-label SaaS platform/i).count()) errors.push('esport.ido SaaS product description is missing')
+  for (const src of [
+    '/projects/esport-ido/training-with-alex-freitag.png',
+    '/projects/esport-ido/worlds-selection.png',
+    '/projects/esport-ido/training-results.jpg',
+  ]) {
+    if (!await page.locator(`.dialog-thumbnails [src="${src}"]`).count()) errors.push(`esport.ido media is missing: ${src}`)
+  }
+  await page.getByRole('button', { name: /Show video/ }).click()
+  if (await page.locator('.dialog-media video').getAttribute('src') !== '/projects/esport-ido/esport-ido-demo.mp4') errors.push('esport.ido demo video is missing or not playable from the gallery')
+  await page.getByRole('button', { name: 'Close case study' }).click()
+
+  await page.goto('http://127.0.0.1:4173/cv/index.html', { waitUntil: 'networkidle' })
   if (!await page.getByRole('heading', { name: 'Stanislav Sorokin' }).count()) errors.push('/cv: heading missing')
   const cvLink = page.locator('a[download]')
   if (await cvLink.getAttribute('href') !== '/cv/Stanislav_Sorokin_CV.pdf') errors.push('/cv: download link points to the wrong PDF')
