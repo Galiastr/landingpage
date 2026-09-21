@@ -5,12 +5,6 @@
     "media": [
       {
         "type": "image",
-        "path": "/projects/cricket-manager-pro/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
-      {
-        "type": "image",
         "path": "/projects/cricket-manager-pro/image-2.png",
         "source": "https://granddevs.com/wp-content/uploads/2018/06/изображение_2023-09-04_153507192.png",
         "bytes": 775049
@@ -34,12 +28,6 @@
         "bytes": 1775074
       },
       {
-        "type": "image",
-        "path": "/projects/cricket-manager-pro/image-6.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/imgonline-com-ua-Resize-42KL5wfKnr.png",
-        "bytes": 5510
-      },
-      {
         "type": "video",
         "path": "/projects/cricket-manager-pro/video-1.mp4",
         "source": "https://granddevs.com/wp-content/uploads/2023/09/Cricket-Manager-Pro-Launch-Trailer.mp4?_=2",
@@ -51,12 +39,6 @@
     "internalSource": "https://granddevs.com/index.php/portfolio-item/the-white-keep/",
     "title": "My memory of us - Grand Devs",
     "media": [
-      {
-        "type": "image",
-        "path": "/projects/my-memory-of-us/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
       {
         "type": "image",
         "path": "/projects/my-memory-of-us/image-2.jpg",
@@ -76,18 +58,6 @@
         "bytes": 101429
       },
       {
-        "type": "image",
-        "path": "/projects/my-memory-of-us/image-5.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/imgonline-com-ua-Resize-OhX0dqN83WezVrcv.png",
-        "bytes": 5364
-      },
-      {
-        "type": "image",
-        "path": "/projects/my-memory-of-us/image-6.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/imgonline-com-ua-Resize-42KL5wfKnr.png",
-        "bytes": 5510
-      },
-      {
         "type": "video",
         "path": "/projects/my-memory-of-us/video-1.mp4",
         "source": "https://granddevs.com/wp-content/uploads/2023/09/My-Memory-of-Us-gameplay-trailer.mp4?_=2",
@@ -99,12 +69,6 @@
     "internalSource": "https://granddevs.com/index.php/portfolio-item/timetraveldesign/",
     "title": "TimeTravel - Grand Devs",
     "media": [
-      {
-        "type": "image",
-        "path": "/projects/time-travel/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
       {
         "type": "image",
         "path": "/projects/time-travel/image-2.jpg",
@@ -143,12 +107,6 @@
     "media": [
       {
         "type": "image",
-        "path": "/projects/brams/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
-      {
-        "type": "image",
         "path": "/projects/brams/image-2.png",
         "source": "https://granddevs.com/wp-content/uploads/2018/06/изображение_2023-09-04_144148516.png",
         "bytes": 727629
@@ -177,12 +135,6 @@
     "internalSource": "https://granddevs.com/index.php/portfolio-item/kids-fish/",
     "title": "Kids Fish - Grand Devs",
     "media": [
-      {
-        "type": "image",
-        "path": "/projects/kids-fish/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
       {
         "type": "image",
         "path": "/projects/kids-fish/image-2.jpg",
@@ -221,12 +173,6 @@
     "media": [
       {
         "type": "image",
-        "path": "/projects/applemat/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
-      {
-        "type": "image",
         "path": "/projects/applemat/image-2.png",
         "source": "https://granddevs.com/wp-content/uploads/2018/06/изображение_2023-09-04_163328889.png",
         "bytes": 328718
@@ -263,12 +209,6 @@
     "media": [
       {
         "type": "image",
-        "path": "/projects/kingdom-jump/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
-      {
-        "type": "image",
         "path": "/projects/kingdom-jump/image-2.png",
         "source": "https://granddevs.com/wp-content/uploads/2023/09/1-1.png",
         "bytes": 1792641
@@ -299,12 +239,6 @@
     "media": [
       {
         "type": "image",
-        "path": "/projects/chase-the-sun/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
-      {
-        "type": "image",
         "path": "/projects/chase-the-sun/image-2.jpg",
         "source": "https://granddevs.com/wp-content/uploads/2024/08/2-6.jpg",
         "bytes": 84112
@@ -333,12 +267,6 @@
     "internalSource": "https://granddevs.com/index.php/portfolio-item/tricky-trip/",
     "title": "Tricky Trip - Grand Devs",
     "media": [
-      {
-        "type": "image",
-        "path": "/projects/tricky-trip/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
       {
         "type": "image",
         "path": "/projects/tricky-trip/image-2.png",
@@ -377,12 +305,6 @@
     "media": [
       {
         "type": "image",
-        "path": "/projects/bouncy-fall/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
-      {
-        "type": "image",
         "path": "/projects/bouncy-fall/image-2.jpg",
         "source": "https://granddevs.com/wp-content/uploads/2024/08/2-5.jpg",
         "bytes": 112058
@@ -417,12 +339,6 @@
     "internalSource": "https://granddevs.com/index.php/portfolio-item/tube/",
     "title": "Tube - Grand Devs",
     "media": [
-      {
-        "type": "image",
-        "path": "/projects/tube/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
       {
         "type": "image",
         "path": "/projects/tube/image-2.png",
@@ -465,12 +381,6 @@
     "media": [
       {
         "type": "image",
-        "path": "/projects/ball-machine/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
-      {
-        "type": "image",
         "path": "/projects/ball-machine/image-2.jpg",
         "source": "https://granddevs.com/wp-content/uploads/2024/08/8.jpg",
         "bytes": 221544
@@ -499,12 +409,6 @@
     "internalSource": "https://granddevs.com/index.php/portfolio-item/ball-breaker/",
     "title": "Ball Breaker - Grand Devs",
     "media": [
-      {
-        "type": "image",
-        "path": "/projects/ball-breaker/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
       {
         "type": "image",
         "path": "/projects/ball-breaker/image-2.jpg",
@@ -537,12 +441,6 @@
     "media": [
       {
         "type": "image",
-        "path": "/projects/flappy-attack/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
-      {
-        "type": "image",
         "path": "/projects/flappy-attack/image-2.jpg",
         "source": "https://granddevs.com/wp-content/uploads/2024/08/3-8.jpg",
         "bytes": 176413
@@ -565,12 +463,6 @@
     "internalSource": "https://granddevs.com/index.php/portfolio-item/clumsy-walk/",
     "title": "Clumsy Walk - Grand Devs",
     "media": [
-      {
-        "type": "image",
-        "path": "/projects/clumsy-walk/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
       {
         "type": "image",
         "path": "/projects/clumsy-walk/image-2.jpg",
@@ -601,12 +493,6 @@
     "internalSource": "https://granddevs.com/index.php/portfolio-item/crash-io/",
     "title": "Crash.io - Grand Devs",
     "media": [
-      {
-        "type": "image",
-        "path": "/projects/crash-io/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
       {
         "type": "image",
         "path": "/projects/crash-io/image-2.png",
@@ -645,12 +531,6 @@
     "media": [
       {
         "type": "image",
-        "path": "/projects/zombie-attack/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
-      {
-        "type": "image",
         "path": "/projects/zombie-attack/image-2.png",
         "source": "https://granddevs.com/wp-content/uploads/2024/08/UI.png",
         "bytes": 1669080
@@ -681,12 +561,6 @@
     "media": [
       {
         "type": "image",
-        "path": "/projects/shopping-mall/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
-      {
-        "type": "image",
         "path": "/projects/shopping-mall/image-2.jpg",
         "source": "https://granddevs.com/wp-content/uploads/2024/08/Clumsy-Walk_char-scaled.jpg",
         "bytes": 296155
@@ -697,12 +571,6 @@
     "internalSource": "https://granddevs.com/index.php/portfolio-item/save-dan/",
     "title": "Save Dan - Grand Devs",
     "media": [
-      {
-        "type": "image",
-        "path": "/projects/save-dan/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
       {
         "type": "image",
         "path": "/projects/save-dan/image-2.png",
@@ -737,12 +605,6 @@
     "internalSource": "https://granddevs.com/index.php/portfolio-item/audio-driver/",
     "title": "Audio driver - Grand Devs",
     "media": [
-      {
-        "type": "image",
-        "path": "/projects/audio-driver/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
       {
         "type": "image",
         "path": "/projects/audio-driver/image-2.png",
@@ -785,12 +647,6 @@
     "media": [
       {
         "type": "image",
-        "path": "/projects/beat-the-beats/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
-      {
-        "type": "image",
         "path": "/projects/beat-the-beats/image-2.jpg",
         "source": "https://granddevs.com/wp-content/uploads/2024/07/001-scaled.jpg",
         "bytes": 270284
@@ -825,12 +681,6 @@
     "internalSource": "https://granddevs.com/index.php/portfolio-item/a-bad-day-at-zoo/",
     "title": "A bad day at Zoo - Grand Devs",
     "media": [
-      {
-        "type": "image",
-        "path": "/projects/bad-day-at-zoo/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
       {
         "type": "image",
         "path": "/projects/bad-day-at-zoo/image-2.png",
@@ -869,12 +719,6 @@
     "media": [
       {
         "type": "image",
-        "path": "/projects/dragon-escape/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
-      {
-        "type": "image",
         "path": "/projects/dragon-escape/image-2.jpg",
         "source": "https://granddevs.com/wp-content/uploads/2023/09/576x768bb.jpg",
         "bytes": 47339
@@ -899,12 +743,6 @@
     "media": [
       {
         "type": "image",
-        "path": "/projects/air-battles/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
-      {
-        "type": "image",
         "path": "/projects/air-battles/image-2.jpg",
         "source": "https://granddevs.com/wp-content/uploads/2024/08/airbattleswwwwww.jpg",
         "bytes": 141959
@@ -927,12 +765,6 @@
     "internalSource": "https://granddevs.com/index.php/portfolio-item/asgard-escape/",
     "title": "Asgard Escape - Grand Devs",
     "media": [
-      {
-        "type": "image",
-        "path": "/projects/asgard-escape/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
       {
         "type": "image",
         "path": "/projects/asgard-escape/image-2.jpg",
@@ -971,12 +803,6 @@
     "media": [
       {
         "type": "image",
-        "path": "/projects/friends-quest/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
-      {
-        "type": "image",
         "path": "/projects/friends-quest/image-2.png",
         "source": "https://granddevs.com/wp-content/uploads/2023/09/screen-0.png",
         "bytes": 505167
@@ -1007,12 +833,6 @@
     "media": [
       {
         "type": "image",
-        "path": "/projects/hajwala/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
-      {
-        "type": "image",
         "path": "/projects/hajwala/image-2.png",
         "source": "https://granddevs.com/wp-content/uploads/2023/09/image-20.png",
         "bytes": 221021
@@ -1036,12 +856,6 @@
         "bytes": 199795
       },
       {
-        "type": "image",
-        "path": "/projects/hajwala/image-6.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/imgonline-com-ua-Resize-OhX0dqN83WezVrcv.png",
-        "bytes": 5364
-      },
-      {
         "type": "video",
         "path": "/projects/hajwala/video-1.mp4",
         "source": "https://granddevs.com/wp-content/uploads/2023/09/Rababagames-This-is-HAJWALA-2022-هذه-هجولة.mp4?_=2",
@@ -1053,12 +867,6 @@
     "internalSource": "https://granddevs.com/index.php/portfolio-item/sudoku-social/",
     "title": "Sudoku Social - Grand Devs",
     "media": [
-      {
-        "type": "image",
-        "path": "/projects/sudoku-social/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
       {
         "type": "image",
         "path": "/projects/sudoku-social/image-2.png",
@@ -1076,61 +884,12 @@
         "path": "/projects/sudoku-social/image-4.jpg",
         "source": "https://granddevs.com/wp-content/uploads/2023/09/618f65931f12a01df60eac97_img-screen-07-thumb.jpg",
         "bytes": 39340
-      },
-      {
-        "type": "image",
-        "path": "/projects/sudoku-social/image-5.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/imgonline-com-ua-Resize-OhX0dqN83WezVrcv.png",
-        "bytes": 5364
-      },
-      {
-        "type": "image",
-        "path": "/projects/sudoku-social/image-6.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/imgonline-com-ua-Resize-42KL5wfKnr.png",
-        "bytes": 5510
       }
     ]
   },
   "ido-soccer": {
     "internalSource": "https://granddevs.com/index.php/portfolio-item/ido-soccer/",
     "title": "Ido.soccer - Grand Devs",
-    "media": [
-      {
-        "type": "image",
-        "path": "/projects/ido-soccer/image-1.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/изображение_2023-09-01_163804232.png",
-        "bytes": 158888
-      },
-      {
-        "type": "image",
-        "path": "/projects/ido-soccer/image-2.png",
-        "source": "https://granddevs.com/wp-content/uploads/2018/06/изображение_2023-09-04_175319682.png",
-        "bytes": 773219
-      },
-      {
-        "type": "image",
-        "path": "/projects/ido-soccer/image-3.png",
-        "source": "https://granddevs.com/wp-content/uploads/2018/06/изображение_2023-09-04_175341665.png",
-        "bytes": 539947
-      },
-      {
-        "type": "image",
-        "path": "/projects/ido-soccer/image-4.png",
-        "source": "https://granddevs.com/wp-content/uploads/2018/06/изображение_2023-09-04_175354302.png",
-        "bytes": 567449
-      },
-      {
-        "type": "image",
-        "path": "/projects/ido-soccer/image-5.png",
-        "source": "https://granddevs.com/wp-content/uploads/2018/06/изображение_2023-09-04_175328934.png",
-        "bytes": 778915
-      },
-      {
-        "type": "image",
-        "path": "/projects/ido-soccer/image-6.png",
-        "source": "https://granddevs.com/wp-content/uploads/2023/09/imgonline-com-ua-Resize-OhX0dqN83WezVrcv.png",
-        "bytes": 5364
-      }
-    ]
+    "media": []
   }
 }

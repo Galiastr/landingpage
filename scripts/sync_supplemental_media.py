@@ -11,7 +11,7 @@ except ModuleNotFoundError:
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "public" / "projects"
-MANIFEST = OUT / "supplemental-media-manifest.json"
+MANIFEST = ROOT / "research" / "media-manifests" / "supplemental-media-manifest.json"
 MAX_BYTES = 12 * 1024 * 1024
 ALLOWED_HOSTS = {"loom.games", "www.smileygamer.com"}
 USER_AGENT = "Mozilla/5.0 (compatible; StanislavSorokinPortfolio/1.0)"
@@ -45,6 +45,7 @@ def download(url: str, destination: Path) -> int:
 
 
 def main() -> None:
+    MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     manifest = {}
     for slug, sources in PROJECTS.items():
         media = []

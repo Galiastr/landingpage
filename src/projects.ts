@@ -63,13 +63,13 @@ export const projects: Project[] = [
       { platform: 'Official site', url: 'https://loom.games/en/' },
       { platform: 'Kickstarter', url: 'https://www.kickstarter.com/projects/328862817/zombie-battleground-the-new-generation-of-ccg-tcg/' },
     ], releaseStatus: 'Legacy release',
-    fallbackImage: '/projects/relentless.png', coverImage: 'https://img.itch.zone/aW1hZ2UvMzQzNTQzLzIxMzcxOTYuanBn/original/yN6fVA.jpg', internalSource: 'https://loom.games/en/', featured: true, evidence: 'CV + public source',
+    fallbackImage: '/projects/relentless.png', coverImage: '/projects/relentless/official-1.jpg', internalSource: 'https://loom.games/en/', featured: true, evidence: 'CV + public source',
     excludeMedia: ['/projects/relentless/image-1.png'],
     extraMedia: [
-      { type: 'image', src: 'https://img.itch.zone/aW1hZ2UvMzQzNTQzLzIxMzcxOTYuanBn/original/yN6fVA.jpg' },
-      { type: 'image', src: 'https://img.itch.zone/aW1hZ2UvMzQzNTQzLzE3MDQ0NjIuanBn/original/jk2ru2.jpg' },
-      { type: 'image', src: 'https://img.itch.zone/aW1hZ2UvMzQzNTQzLzE3MDQ0NjMuanBn/original/iRa0GX.jpg' },
-      { type: 'image', src: 'https://img.itch.zone/aW1hZ2UvMzQzNTQzLzE3MDQ0NjUuanBn/original/nenoCm.jpg' },
+      { type: 'image', src: '/projects/relentless/official-1.jpg' },
+      { type: 'image', src: '/projects/relentless/official-2.jpg' },
+      { type: 'image', src: '/projects/relentless/official-3.jpg' },
+      { type: 'image', src: '/projects/relentless/official-4.jpg' },
     ]
   }),
   project({
@@ -93,7 +93,7 @@ export const projects: Project[] = [
     storeLinks: [
       { platform: 'App Store', url: 'https://apps.apple.com/us/app/king-royale-idle-tycoon-rpg/id1479539390' },
     ], releaseStatus: 'Released',
-    evidence: 'CV', fallbackImage: '/projects/shopping-mall.jpg', coverImage: 'https://i3.ytimg.com/vi/vNDQMXJP8sw/hqdefault.jpg', internalSource: 'https://kingroyale.de/'
+    evidence: 'CV', fallbackImage: '/projects/shopping-mall.jpg', coverImage: '/projects/enya-assistant/official-1.jpg', internalSource: 'https://kingroyale.de/'
   }),
   project({
     id: 'the-longest-tale', title: 'The Longest Tale', kicker: 'Fantasy action RPG · Steam',
@@ -193,7 +193,7 @@ export const projects: Project[] = [
       { platform: 'App Store', url: 'https://apps.apple.com/us/app/my-memory-of-us/id1474869488' },
       { platform: 'Nintendo Switch', url: 'https://www.nintendo.com/us/store/products/my-memory-of-us-switch/' },
     ],
-    fallbackImage: '/projects/white-keep.jpg', internalSource: 'https://granddevs.com/index.php/portfolio-item/the-white-keep', featured: true, evidence: 'Team portfolio'
+    fallbackImage: '/projects/white-keep.jpg', internalSource: 'https://www.nintendo.com/us/store/products/my-memory-of-us-switch/', featured: true, evidence: 'Team portfolio'
   }),
   project({
     id: 'einstein-brain-trainer', title: 'Einstein Brain Trainer', kicker: 'Educational · Brain training',
@@ -201,10 +201,10 @@ export const projects: Project[] = [
     contribution: teamContribution, engagement: 'Co-development', genre: 'Educational', platforms: ['Android'], capabilities: ['Unity', 'Gameplay', 'UI/UX'],
     storeLinks: [{ platform: 'Google Play', url: 'https://play.google.com/store/apps/details?id=de.bbg.EinsteinHD&hl=en' }],
     evidence: 'Team portfolio', fallbackImage: '/projects/kids-fish.jpg', extraMedia: [
-      { type: 'image', src: 'https://play-lh.googleusercontent.com/7PzUkiNdA955TdCo8-N7DbxNEmhAZiRYnMHyPQr_b51yFEiCUKhsf1MVpIoyXmRY7wHuU7ZSUkl9QrJUzVpi=w1052-h592', alt: 'Einstein Brain Trainer screenshot 1' },
-      { type: 'image', src: 'https://play-lh.googleusercontent.com/4GlBy0CGbagP3cWpxsjG0oRjiQ6Na0GQTxXirsG7_6sm-8naUjMjmliCerwDCk9hVys1c7NZHNJSFLnQ0sM8bg=w1052-h592', alt: 'Einstein Brain Trainer screenshot 2' },
-      { type: 'image', src: 'https://play-lh.googleusercontent.com/khlSyMuqAHfWKK6xMCu429hRmWk1Z4lefWj_rTzoDumjyuDtxtpFL0KiD3S4JsS-fGWvCt7_CJvNHUCqbxO1Ag=w1052-h592', alt: 'Einstein Brain Trainer screenshot 3' },
-      { type: 'image', src: 'https://play-lh.googleusercontent.com/aHQcugcjDnrTYeMJME1hxeBz-ifawEnbamt6cVjsiunvMNYDf2FOvCpENjf7tP8-YOarustJ9ctkjzwe4XvFWA=w1052-h592', alt: 'Einstein Brain Trainer screenshot 4' },
+      { type: 'image', src: '/projects/einstein-brain-trainer/official-1.png', alt: 'Einstein Brain Trainer screenshot 1' },
+      { type: 'image', src: '/projects/einstein-brain-trainer/official-2.png', alt: 'Einstein Brain Trainer screenshot 2' },
+      { type: 'image', src: '/projects/einstein-brain-trainer/official-3.png', alt: 'Einstein Brain Trainer screenshot 3' },
+      { type: 'image', src: '/projects/einstein-brain-trainer/official-4.png', alt: 'Einstein Brain Trainer screenshot 4' },
     ]
   }),
   project({

@@ -517,24 +517,6 @@ const projectMedia = {
       "src": "/projects/sudoku-social/image-4.jpg"
     }
   ],
-  "esport-ido": [
-    {
-      "type": "image",
-      "src": "/projects/esport-ido/image-2.png"
-    },
-    {
-      "type": "image",
-      "src": "/projects/esport-ido/image-3.png"
-    },
-    {
-      "type": "image",
-      "src": "/projects/esport-ido/image-4.png"
-    },
-    {
-      "type": "image",
-      "src": "/projects/esport-ido/image-5.png"
-    }
-  ],
   "manic-miner": [
     {
       "type": "image",

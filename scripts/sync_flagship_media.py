@@ -11,7 +11,7 @@ except ModuleNotFoundError:
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "public" / "projects"
-MANIFEST = OUT / "flagship-media-manifest.json"
+MANIFEST = ROOT / "research" / "media-manifests" / "flagship-media-manifest.json"
 MAX_BYTES = 12 * 1024 * 1024
 USER_AGENT = "Mozilla/5.0 (compatible; StanislavSorokinPortfolio/1.0)"
 ALLOWED_MEDIA_HOSTS = {
@@ -68,6 +68,7 @@ def app_store_project(slug: str, app_id: str) -> dict:
 
 
 def main() -> None:
+    MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     manifest = {
         "the-longest-tale": steam_project("the-longest-tale", "3507360"),
         "guardians-of-peace": steam_project("guardians-of-peace", "1466620"),

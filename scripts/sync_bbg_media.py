@@ -16,6 +16,7 @@ PROJECTS = {
     "shark-shark": "https://bbg-entertainment.com/game/shark-shark/",
 }
 OUT = Path(__file__).resolve().parents[1] / "public" / "projects"
+MANIFEST = Path(__file__).resolve().parents[1] / "research" / "media-manifests" / "bbg-media-manifest.json"
 
 
 def original_image_url(url: str) -> str:
@@ -31,6 +32,7 @@ def original_image_url(url: str) -> str:
 
 
 def main() -> None:
+    MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     manifest: dict[str, object] = {}
     for slug, page_url in PROJECTS.items():
         project_dir = OUT / slug
@@ -64,7 +66,7 @@ def main() -> None:
         except Exception as error:
             manifest[slug] = {"internalSource": page_url, "error": str(error), "media": []}
             print(slug, "ERROR", error)
-    (OUT / "bbg-media-manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 if __name__ == "__main__":

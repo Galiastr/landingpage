@@ -43,6 +43,7 @@ PROJECTS = {
     "ido-soccer": "ido-soccer",
 }
 OUT = Path(__file__).resolve().parents[1] / "public" / "projects"
+MANIFEST = Path(__file__).resolve().parents[1] / "research" / "media-manifests" / "media-manifest.json"
 MAX_IMAGES = 6
 MAX_IMAGE_BYTES = 12 * 1024 * 1024
 MAX_VIDEO_BYTES = 35 * 1024 * 1024
@@ -117,6 +118,7 @@ def extension(url: str, content_type: str | None = None) -> str:
 
 
 def main() -> None:
+    MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     manifest: dict[str, object] = {}
     for slug, source_slug in PROJECTS.items():
         page_url = f"{BASE}{source_slug}/"
@@ -166,7 +168,7 @@ def main() -> None:
         except Exception as error:
             manifest[slug] = {"internalSource": page_url, "error": str(error), "media": []}
             print(slug, "ERROR", error)
-    (OUT / "media-manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 if __name__ == "__main__":

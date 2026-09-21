@@ -5,11 +5,12 @@ import json
 import struct
 
 ROOT = Path(__file__).resolve().parents[1]
+MANIFEST_DIR = ROOT / "research" / "media-manifests"
 MANIFESTS = [
-    ROOT / "public" / "projects" / "media-manifest.json",
-    ROOT / "public" / "projects" / "bbg-media-manifest.json",
-    ROOT / "public" / "projects" / "flagship-media-manifest.json",
-    ROOT / "public" / "projects" / "supplemental-media-manifest.json",
+    MANIFEST_DIR / "media-manifest.json",
+    MANIFEST_DIR / "bbg-media-manifest.json",
+    MANIFEST_DIR / "flagship-media-manifest.json",
+    MANIFEST_DIR / "supplemental-media-manifest.json",
 ]
 OUTPUT = ROOT / "src" / "projectMedia.ts"
 IGNORED_SOURCE_MARKERS = (
@@ -42,9 +43,12 @@ def main() -> None:
                 source = item.get("source", "")
                 if any(marker in source for marker in IGNORED_SOURCE_MARKERS):
                     continue
-                if media_type == "image" and local_path and is_store_badge_candidate(ROOT / "public" / local_path.lstrip("/")):
+                local_file = ROOT / "public" / local_path.lstrip("/") if local_path else None
+                if not local_file or not local_file.exists():
                     continue
-                if local_path and media_type in {"image", "video"}:
+                if media_type == "image" and is_store_badge_candidate(local_file):
+                    continue
+                if media_type in {"image", "video"}:
                     media.append({"type": media_type, "src": local_path})
             if media:
                 merged[slug] = media
