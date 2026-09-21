@@ -269,50 +269,83 @@ export const projects: Project[] = [
   }),
 
   project({
-    id: 'fast-food-master-2025', title: 'Fast Food Master 2025', kicker: 'Windows-first simulation · multi-platform plan',
-    description: 'A fast-food management sim being finished for Windows, with public storefront coverage for selected platforms and a broader multi-platform rollout planned.',
-    contribution: 'Windows-first production and gameplay coordination; public store pages exist for some target platforms while wider platform planning continues.',
-    engagement: 'Co-development', genre: 'Simulation', platforms: ['Windows', 'PlayStation', 'Xbox'], capabilities: ['Gameplay', 'Simulation', 'UI/UX'],
-    storeLinks: [{ platform: 'Epic Games Store', url: 'https://store.epicgames.com/p/fast-food-master-2025-b938e0?lang=pl' }],
-    releaseStatus: 'In development',
-    coverImage: 'https://image.api.playstation.com/vulcan/ap/rnd/202503/0514/2ac519dc70bb9e9c6bb3ddaaae27a94dbbac5596a3c1e38a.jpg',
-    internalSource: 'https://store.epicgames.com/p/fast-food-master-2025-b938e0?lang=pl', evidence: 'CV + public source'
+    id: 'fast-food-master-2025', title: 'Fast Food Master 2025', kicker: 'Porting · Restaurant simulation',
+    description: 'A hands-on restaurant simulator about preparing orders, managing ingredients, customizing a fast-food venue and growing it into a profitable food business.',
+    contribution: 'Console porting and release support for Xbox and PlayStation, including platform adaptation, debugging, optimization and submission-focused delivery.',
+    engagement: 'Porting', genre: 'Simulation', platforms: ['Windows', 'PlayStation', 'Xbox'], capabilities: ['Porting', 'Platform delivery', 'Optimization', 'Certification'],
+    storeLinks: [
+      { platform: 'Epic Games Store', url: 'https://store.epicgames.com/p/fast-food-master-2025-b938e0?lang=pl' },
+      { platform: 'Xbox', url: 'https://www.xbox.com/en-US/games/store/fast-food-master-2025/9P8TZH62HXFC' },
+    ],
+    releaseStatus: 'Released', coverImage: '/projects/fast-food-master-2025/official-1.jpg',
+    internalSource: 'https://www.xbox.com/en-US/games/store/fast-food-master-2025/9P8TZH62HXFC', evidence: 'Owner-attested + publisher',
+    extraMedia: [1, 2, 3, 4].map(index => ({ type: 'image' as const, src: `/projects/fast-food-master-2025/official-${index}.jpg` }))
   }),
   project({
-    id: 'digging-a-hole-simulator', title: 'Digging A Hole Simulator', kicker: 'Windows-first adventure · console rollout',
-    description: 'A darkly funny digging adventure being finished for Windows, with public release coverage on consoles as part of the wider platform plan.',
-    contribution: 'Windows-first project work and port planning reflected in the portfolio; public release pages remain for selected targets.',
+    id: 'digging-a-hole-simulator', title: 'Digging A Hole Simulator', kicker: 'Adventure simulation · Console delivery',
+    description: 'A relaxed digging adventure about excavating deeper layers, finding minerals and hidden artifacts, selling resources and upgrading tools to reach new underground secrets.',
+    contribution: 'Cross-platform development and console-delivery support, with platform adaptation and release planning for Nintendo Switch.',
     engagement: 'Co-development', genre: 'Adventure', platforms: ['Windows', 'Nintendo Switch'], capabilities: ['Porting', 'Adventure', 'Puzzle'],
     storeLinks: [{ platform: 'Nintendo Switch', url: 'https://www.nintendo.com/us/store/products/digging-a-hole-simulator-switch/' }],
-    releaseStatus: 'In development',
-    coverImage: 'https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/store/software/switch/70010000096598/771a90da55726358383b7bd422a8a0190d68424ec721920989803a94c0645062',
-    internalSource: 'https://www.nintendo.com/us/store/products/digging-a-hole-simulator-switch/', evidence: 'CV + public source'
+    releaseStatus: 'Released', coverImage: '/projects/digging-a-hole-simulator/official-1.jpg',
+    internalSource: 'https://www.nintendo.com/us/store/products/digging-a-hole-simulator-switch/', evidence: 'CV + public source',
+    extraMedia: [1, 2, 3, 4].map(index => ({ type: 'image' as const, src: `/projects/digging-a-hole-simulator/official-${index}.jpg` }))
   }),
   project({
-    id: 'schoolboy-escape', title: 'Schoolboy Escape', kicker: 'Windows-first adventure · multi-platform plan',
-    description: 'A stealthy puzzle-adventure being finished for Windows, with additional platform releases planned where public store pages already exist.',
-    contribution: 'Windows-first development and platform planning; public pages exist for some release targets, but not every platform is published yet.',
-    engagement: 'Co-development', genre: 'Adventure', platforms: ['Windows', 'Nintendo Switch', 'Xbox'], capabilities: ['Adventure', 'Puzzle', 'Platform delivery'],
+    id: 'schoolboy-escape', title: 'Schoolboy Escape', kicker: 'Porting · Stealth puzzle adventure',
+    description: 'A first-person stealth puzzle adventure about planning the perfect escape, exploring a guarded home, finding useful items and avoiding detection on the way to freedom.',
+    contribution: 'Console porting and platform delivery for Nintendo Switch and Xbox, including adaptation, debugging, optimization and release-focused technical support.',
+    engagement: 'Porting', genre: 'Adventure', platforms: ['Windows', 'Nintendo Switch', 'Xbox'], capabilities: ['Porting', 'Platform delivery', 'Optimization', 'Puzzle'],
     storeLinks: [
       { platform: 'Nintendo Switch', url: 'https://www.nintendo.com/us/store/products/schoolboy-escape-switch/' },
       { platform: 'Xbox', url: 'https://www.xbox.com/pl-PL/games/store/schoolboy-escape-xbox-edition/9ngm3hrsk106' },
     ],
-    releaseStatus: 'In development',
-    coverImage: 'https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/store/software/switch/70010000095962/d391e3450c167e8c3cee029474c0ff3761bdb35024da539140660bf4359ee586',
-    internalSource: 'https://www.nintendo.com/us/store/products/schoolboy-escape-switch/', evidence: 'CV + public source'
+    releaseStatus: 'Released', coverImage: '/projects/schoolboy-escape/official-1.jpg',
+    internalSource: 'https://www.nintendo.com/us/store/products/schoolboy-escape-switch/', evidence: 'Owner-attested + publisher',
+    extraMedia: [1, 2, 3, 4].map(index => ({ type: 'image' as const, src: `/projects/schoolboy-escape/official-${index}.jpg` }))
   }),
   project({
-    id: 'cyberpunk-hacker', title: 'Cyberpunk Hacker', kicker: 'Windows-first cyberpunk · multi-platform plan',
-    description: 'A neon-drenched cyberpunk title being finished for Windows, with public store pages already covering several of the planned platforms.',
-    contribution: 'Windows-first development and platform rollout planning; some platform releases are public already, while others remain in production.',
-    engagement: 'Co-development', genre: 'Cyberpunk action', platforms: ['Windows', 'Nintendo Switch', 'Epic Games Store', 'Xbox'], capabilities: ['Action', 'Puzzle', 'Platform delivery'],
+    id: 'cyberpunk-hacker', title: 'Cyberpunk Hacker', kicker: 'Cyberpunk FPS roguelite · Multi-platform',
+    description: 'A fast-paced first-person roguelite where a constantly draining neural link turns health into a timer. Players combine gunplay, sliding, dashing, environmental hacking and stackable perks across neon corporate fortresses.',
+    contribution: 'Cross-platform development and delivery support across Windows, Nintendo Switch and Xbox storefronts.',
+    engagement: 'Co-development', genre: 'Cyberpunk action', platforms: ['Windows', 'Nintendo Switch', 'Epic Games Store', 'Xbox'], capabilities: ['Action', 'FPS', 'Roguelite', 'Platform delivery'],
     storeLinks: [
-      { platform: 'Nintendo Switch', url: 'https://www.nintendo.com/en-gb/Games/Nintendo-Switch-download-software/Cyberpunk-Hacker-2660907.html?srsltid=AfmBOoqXk4v_r5FkYC-bQDHRhm13hmgZqWJdpzCGhLucNExB0hvpssOk' },
+      { platform: 'Nintendo Switch', url: 'https://www.nintendo.com/en-gb/Games/Nintendo-Switch-download-software/Cyberpunk-Hacker-2660907.html' },
       { platform: 'Epic Games Store', url: 'https://store.epicgames.com/p/cyberpunk-hacker-5cac5c' },
       { platform: 'Xbox', url: 'https://www.xbox.com/en-US/games/store/cyberpunk-hacker/9MSNXVRWFF6S' },
     ],
-    releaseStatus: 'In development',
-    coverImage: 'https://www.nintendo.com/eu/media/images/assets/nintendo_switch_games/cyberpunkhacker/2x1_CyberpunkHacker_image1280w.jpg',
-    internalSource: 'https://www.nintendo.com/en-gb/Games/Nintendo-Switch-download-software/Cyberpunk-Hacker-2660907.html?srsltid=AfmBOoqXk4v_r5FkYC-bQDHRhm13hmgZqWJdpzCGhLucNExB0hvpssOk', evidence: 'CV + public source'
+    releaseStatus: 'Released', coverImage: '/projects/cyberpunk-hacker/official-1.jpg',
+    internalSource: 'https://www.nintendo.com/en-gb/Games/Nintendo-Switch-download-software/Cyberpunk-Hacker-2660907.html', evidence: 'CV + public source',
+    extraMedia: [1, 2, 3, 4].map(index => ({ type: 'image' as const, src: `/projects/cyberpunk-hacker/official-${index}.jpg` }))
+  }),
+  project({
+    id: 'contraband-patrol-simulator', title: 'Contraband Patrol Simulator', kicker: 'Porting · Border-security simulation',
+    description: 'A border-security simulator built around document inspection, vehicle searches, contraband detection, pursuit missions and upgrading a checkpoint as threats escalate.',
+    contribution: 'Nintendo Switch porting and release delivery, including platform adaptation, optimization, debugging and certification-focused support.',
+    engagement: 'Porting', genre: 'Simulation', platforms: ['Nintendo Switch'], capabilities: ['Porting', 'Optimization', 'Certification', 'Platform delivery'],
+    storeLinks: [{ platform: 'Nintendo Switch', url: 'https://www.nintendo.com/us/store/products/contraband-patrol-simulator-switch/' }],
+    releaseStatus: 'Released', coverImage: '/projects/contraband-patrol-simulator/official-1.jpg',
+    internalSource: 'https://www.nintendo.com/us/store/products/contraband-patrol-simulator-switch/', evidence: 'Owner-attested + publisher',
+    extraMedia: [1, 2, 3, 4].map(index => ({ type: 'image' as const, src: `/projects/contraband-patrol-simulator/official-${index}.jpg` }))
+  }),
+  project({
+    id: 'car-dealership-manager-2026', title: 'Car Dealership Manager 2026', kicker: 'Porting · Automotive business simulation',
+    description: 'A hands-on dealership simulator about buying, inspecting, repairing and selling cars, then expanding a small lot into a luxury showroom with staff, upgrades and test drives.',
+    contribution: 'Nintendo Switch porting and release delivery, including platform adaptation, performance work, debugging and certification-focused support.',
+    engagement: 'Porting', genre: 'Simulation', platforms: ['Nintendo Switch'], capabilities: ['Porting', 'Optimization', 'Certification', 'Platform delivery'],
+    storeLinks: [{ platform: 'Nintendo Switch', url: 'https://www.nintendo.com/us/store/products/car-dealership-manager-2026-switch/' }],
+    releaseStatus: 'Released', coverImage: '/projects/car-dealership-manager-2026/official-1.jpg',
+    internalSource: 'https://www.nintendo.com/us/store/products/car-dealership-manager-2026-switch/', featured: true, evidence: 'Owner-attested + publisher',
+    extraMedia: [1, 2, 3, 4].map(index => ({ type: 'image' as const, src: `/projects/car-dealership-manager-2026/official-${index}.jpg` }))
+  }),
+  project({
+    id: 'punch-monkey-revenge', title: 'Punch Monkey Revenge', kicker: 'Porting · Slow-motion action adventure',
+    description: 'A stylized action adventure about a determined monkey fighting through classrooms, hallways and playgrounds to recover a stolen toy, using slow-motion stunts, expressive combos and improvised weapons.',
+    contribution: 'Xbox and Windows porting and release delivery, including platform adaptation, performance work, debugging and certification-focused support.',
+    engagement: 'Porting', genre: 'Action adventure', platforms: ['Xbox', 'Windows'], capabilities: ['Porting', 'Action', 'Optimization', 'Platform delivery'],
+    storeLinks: [{ platform: 'Xbox', url: 'https://www.xbox.com/en-US/games/store/punch-monkey-revenge/9P5CRX5D62N5' }],
+    releaseStatus: 'Released', coverImage: '/projects/punch-monkey-revenge/official-1.jpg',
+    internalSource: 'https://www.xbox.com/en-US/games/store/punch-monkey-revenge/9P5CRX5D62N5', evidence: 'Owner-attested + publisher',
+    extraMedia: [1, 2, 3, 4].map(index => ({ type: 'image' as const, src: `/projects/punch-monkey-revenge/official-${index}.jpg` }))
   }),
 ]

@@ -177,6 +177,8 @@ function App() {
     const nextPreset = portfolioPresets[slug]
     returnPathRef.current = nextPreset.path
     window.history.pushState({}, '', nextPreset.path)
+    setFilters(slug === 'porting' ? { ...emptyFilters, engagement: 'Porting' } : emptyFilters)
+    setSearch('')
     setRouteVersion(version => version + 1)
   }, [])
 
@@ -197,6 +199,11 @@ function App() {
       window.removeEventListener('hashchange', syncRoute)
     }
   }, [visibleProjects])
+
+  useEffect(() => {
+    setFilters(preset.slug === 'porting' ? { ...emptyFilters, engagement: 'Porting' } : emptyFilters)
+    setSearch('')
+  }, [preset.slug])
 
   useEffect(() => {
     const canonicalPath = selected ? `/project/${selected.id}` : preset.path

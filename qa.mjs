@@ -28,7 +28,7 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
     if (spread('width') > 2 || spread('height') > 2 || spread('visualHeight') > 2) errors.push(`desktop: featured cards are not equal-sized: ${JSON.stringify(featuredBoxes)}`)
   }
   if (!await page.getByRole('heading', { name: 'Selected filtered case studies' }).count()) errors.push(`${name}: featured section heading is missing`)
-  if (cards !== 44) errors.push(`${name}: expected 44 project cards, got ${cards}`)
+  if (cards !== 47) errors.push(`${name}: expected 47 project cards, got ${cards}`)
   if (overflow) errors.push(`${name}: horizontal overflow`)
   if (name === 'mobile' && !await page.locator('.availability__compact').isVisible()) errors.push('mobile: compact availability label is not visible')
   const cardImages = page.locator('.project-card img')
@@ -43,7 +43,7 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
   if (name === 'desktop') {
     await page.locator('select').nth(0).selectOption('Porting')
     const filtered = await page.locator('.project-grid .project-card').count()
-    if (filtered !== 7) errors.push(`filter: expected 7 porting projects, got ${filtered}`)
+    if (filtered !== 12) errors.push(`filter: expected 12 porting projects, got ${filtered}`)
     const trigger = page.locator('.project-grid .project-card button').first()
     await trigger.focus()
     await trigger.click()
@@ -95,7 +95,11 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
   await page.evaluate(() => { history.pushState({}, '', '/porting'); dispatchEvent(new PopStateEvent('popstate')) })
   if (!await page.getByRole('heading', { name: 'Console & PC porting' }).count()) errors.push('/porting: targeted heading is missing')
   const portingTitles = await page.locator('.featured .project-card__title-row strong').allTextContents()
-  if (!portingTitles.includes('Manic Miner') || !portingTitles.includes('Boulder Dash 40th Anniversary')) errors.push(`/porting: wrong featured projects: ${portingTitles.join(', ')}`)
+  const expectedPortingTitles = ['Manic Miner', 'Schoolboy Escape', 'Car Dealership Manager 2026']
+  if (JSON.stringify(portingTitles) !== JSON.stringify(expectedPortingTitles)) errors.push(`/porting: wrong featured projects: ${portingTitles.join(', ')}`)
+  await page.waitForFunction(() => document.querySelectorAll('select')[0]?.value === 'Porting')
+  if (await page.locator('select').nth(0).inputValue() !== 'Porting') errors.push('/porting: archive engagement filter was not selected automatically')
+  if (await page.locator('.project-grid .project-card').count() !== 12) errors.push('/porting: archive was not filtered to all 12 porting projects')
   const manicCover = await page.locator('.featured .project-card', { hasText: 'Manic Miner' }).locator('img').getAttribute('src')
   if (manicCover !== '/projects/manic-miner/image-6.jpg') errors.push(`/porting: Manic Miner cover is not the selected colorful level: ${manicCover}`)
   await page.locator('.featured .project-card button').first().click()
@@ -138,6 +142,31 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
   if (!await page.getByRole('heading', { name: /Senior Unity Developer and Technical Lead/ }).count()) errors.push('malformed project permalink crashed instead of falling back safely')
   if (await page.locator('[role="dialog"]').count()) errors.push('malformed project permalink opened a dialog')
 
+  const refreshedCases = {
+    'fast-food-master-2025': { title: 'Fast Food Master 2025', links: ['Epic Games Store', 'Xbox'], engagement: 'Porting' },
+    'digging-a-hole-simulator': { title: 'Digging A Hole Simulator', links: ['Nintendo Switch'], engagement: 'Co-development' },
+    'schoolboy-escape': { title: 'Schoolboy Escape', links: ['Nintendo Switch', 'Xbox'], engagement: 'Porting' },
+    'cyberpunk-hacker': { title: 'Cyberpunk Hacker', links: ['Nintendo Switch', 'Epic Games Store', 'Xbox'], engagement: 'Co-development' },
+    'contraband-patrol-simulator': { title: 'Contraband Patrol Simulator', links: ['Nintendo Switch'], engagement: 'Porting' },
+    'car-dealership-manager-2026': { title: 'Car Dealership Manager 2026', links: ['Nintendo Switch'], engagement: 'Porting' },
+    'punch-monkey-revenge': { title: 'Punch Monkey Revenge', links: ['Xbox'], engagement: 'Porting' },
+  }
+  for (const [slug, expected] of Object.entries(refreshedCases)) {
+    await page.goto(`http://127.0.0.1:4173/project/${slug}`, { waitUntil: 'networkidle' })
+    if (!await page.getByRole('dialog', { name: expected.title }).count()) errors.push(`${expected.title}: direct project route did not open`)
+    const galleryImages = page.locator('.dialog-thumbnails img')
+    if (await galleryImages.count() < 4) errors.push(`${expected.title}: expected at least four gallery images`)
+    await page.waitForFunction(() => [...document.querySelectorAll('.dialog-thumbnails img')].every(image => image.complete))
+    const brokenGalleryImages = await galleryImages.evaluateAll(images => images.filter(image => image.naturalWidth === 0).map(image => image.getAttribute('src')))
+    if (brokenGalleryImages.length) errors.push(`${expected.title}: broken gallery images: ${brokenGalleryImages.join(', ')}`)
+    const labels = await page.locator('.store-links a').allTextContents()
+    for (const label of expected.links) if (!labels.includes(label)) errors.push(`${expected.title}: missing ${label} store link`)
+    const engagement = await page.locator('.dialog-meta div').first().locator('strong').textContent()
+    if (engagement !== expected.engagement) errors.push(`${expected.title}: expected ${expected.engagement} engagement, got ${engagement}`)
+    const status = await page.locator('.release-status strong').textContent()
+    if (status !== 'Released') errors.push(`${expected.title}: expected Released status, got ${status}`)
+  }
+
   await page.goto('http://127.0.0.1:4173/project/esport-ido', { waitUntil: 'networkidle' })
   if (!await page.getByRole('dialog', { name: 'esport.ido' }).count()) errors.push('esport.ido direct permalink did not open the renamed case study')
   const esportSite = page.getByRole('link', { name: 'Official site' })
@@ -162,4 +191,4 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
 }
 await browser.close()
 if (errors.length) { console.error(errors.join('\n')); process.exit(1) }
-console.log('QA passed: desktop/mobile render, 44 cards, filters, gallery dialog, focus trap, Escape, no overflow or console errors')
+console.log('QA passed: desktop/mobile render, 47 cards, preset/archive filters, project galleries, dialog accessibility, routing and no overflow')

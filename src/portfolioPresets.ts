@@ -24,7 +24,7 @@ export const portfolioPresets: Record<PresetSlug, PortfolioPreset> = {
   porting: {
     slug: 'porting', path: '/porting', label: 'Porting', title: 'Console & PC porting',
     description: 'Unity games adapted for PlayStation, Xbox, Nintendo Switch and Steam with release-focused debugging and optimization.',
-    projectIds: ['manic-miner', 'boulder-dash-40', 'astrosmash'],
+    projectIds: ['manic-miner', 'schoolboy-escape', 'car-dealership-manager-2026'],
     seoTitle: 'Unity Console Porting — PlayStation, Xbox, Switch & Steam | Stanislav Sorokin',
     seoDescription: 'Selected Unity console and PC porting work for PlayStation, Xbox, Nintendo Switch and Steam.',
   },
