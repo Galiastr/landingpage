@@ -152,19 +152,23 @@ for (const [name, viewport] of Object.entries({ desktop: { width: 1440, height: 
     'punch-monkey-revenge': { title: 'Punch Monkey Revenge', links: ['Xbox'], engagement: 'Porting' },
   }
   for (const [slug, expected] of Object.entries(refreshedCases)) {
-    await page.goto(`http://127.0.0.1:4173/project/${slug}`, { waitUntil: 'networkidle' })
-    if (!await page.getByRole('dialog', { name: expected.title }).count()) errors.push(`${expected.title}: direct project route did not open`)
-    const galleryImages = page.locator('.dialog-thumbnails img')
+    const casePage = await browser.newPage({ viewport: { width: 1440, height: 1000 } })
+    casePage.on('console', msg => { if (msg.type() === 'error') errors.push(`${expected.title}: console: ${msg.text()}`) })
+    casePage.on('pageerror', err => errors.push(`${expected.title}: pageerror: ${err.message}`))
+    await casePage.goto(`http://127.0.0.1:4173/project/${slug}`, { waitUntil: 'networkidle' })
+    if (!await casePage.getByRole('dialog', { name: expected.title }).count()) errors.push(`${expected.title}: direct project route did not open`)
+    const galleryImages = casePage.locator('.dialog-thumbnails img')
     if (await galleryImages.count() < 4) errors.push(`${expected.title}: expected at least four gallery images`)
-    await page.waitForFunction(() => [...document.querySelectorAll('.dialog-thumbnails img')].every(image => image.complete))
+    await casePage.waitForFunction(() => [...document.querySelectorAll('.dialog-thumbnails img')].every(image => image.complete))
     const brokenGalleryImages = await galleryImages.evaluateAll(images => images.filter(image => image.naturalWidth === 0).map(image => image.getAttribute('src')))
     if (brokenGalleryImages.length) errors.push(`${expected.title}: broken gallery images: ${brokenGalleryImages.join(', ')}`)
-    const labels = await page.locator('.store-links a').allTextContents()
+    const labels = await casePage.locator('.store-links a').allTextContents()
     for (const label of expected.links) if (!labels.includes(label)) errors.push(`${expected.title}: missing ${label} store link`)
-    const engagement = await page.locator('.dialog-meta div').first().locator('strong').textContent()
+    const engagement = await casePage.locator('.dialog-meta div').first().locator('strong').textContent()
     if (engagement !== expected.engagement) errors.push(`${expected.title}: expected ${expected.engagement} engagement, got ${engagement}`)
-    const status = await page.locator('.release-status strong').textContent()
+    const status = await casePage.locator('.release-status strong').textContent()
     if (status !== 'Released') errors.push(`${expected.title}: expected Released status, got ${status}`)
+    await casePage.close()
   }
 
   await page.goto('http://127.0.0.1:4173/project/esport-ido', { waitUntil: 'networkidle' })
